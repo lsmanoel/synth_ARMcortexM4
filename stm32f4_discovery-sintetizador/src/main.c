@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 	FILE *inputF32Buffer_MONO_File, *outputF32Buffer_MONO_File;
 
 	outputF32Buffer_MONO_File = fopen("outputF32Buffer_MONO_File.txt", "w");
-	fprintf(outputF32Buffer_MONO_File, "%f\t", 0);
+	fprintf(outputF32Buffer_MONO_File, "%f\n", 0);
 	fclose(outputF32Buffer_MONO_File);
 	//------------------------------------------------------------------------------------
 	//Sawtooth:
@@ -211,10 +211,10 @@ int main(int argc, char* argv[])
 		//*****************************************************************************************************************
 		//-----------------------------------------------------------------------------------------------------------------
 		//MONO OUT DEBUG FILE - MIXER STEREO
-		outputF32Buffer_MONO_File = fopen("outputF32Buffer_MONO_File.txt", "w+");
+		outputF32Buffer_MONO_File = fopen("outputF32Buffer_MONO_File.txt", "a");
 		for(i=0; i<BLOCK_SIZE; i++)
 		{
-			fprintf(outputF32Buffer_MONO_File, "%f\t", outputF32Buffer_MONO[i]);
+			fprintf(outputF32Buffer_MONO_File, "%f\n", outputF32Buffer_MONO[i]);
 		}
 		fclose(outputF32Buffer_MONO_File);
 

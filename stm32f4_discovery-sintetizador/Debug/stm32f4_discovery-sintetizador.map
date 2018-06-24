@@ -23396,8 +23396,8 @@ END GROUP
                 0x0800b954       0x50 ./system/src/Components/wm5102/wm5102.o
                 0x0800b954                SampleRateConfig
  .rodata.str1.4
-                0x0800b9a4       0x2b ./src/main.o
- *fill*         0x0800b9cf        0x1 
+                0x0800b9a4       0x2a ./src/main.o
+ *fill*         0x0800b9ce        0x2 
  .rodata.TestDesc
                 0x0800b9d0       0x88 ./src/tests.o
  .rodata.str1.4
