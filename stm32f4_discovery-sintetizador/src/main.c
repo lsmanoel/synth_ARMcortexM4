@@ -48,6 +48,9 @@ int main(int argc, char* argv[])
 	float32_t outputF32Buffer_R[BLOCK_SIZE];
 	float32_t outputF32Buffer_L[BLOCK_SIZE];
 
+	FILE *inputF32Buffer_R_File, *outputF32Buffer_R_File;
+	FILE *inputF32Buffer_L_File, *outputF32Buffer_L_File;
+
 	float32_t processBuffer_ping_R[BLOCK_SIZE];
 	float32_t processBuffer_pong_R[BLOCK_SIZE];
 	float32_t processBuffer_ping_L[BLOCK_SIZE];
@@ -58,6 +61,11 @@ int main(int argc, char* argv[])
 	float32_t processBuffer_ping_MONO[BLOCK_SIZE];
 	float32_t processBuffer_pong_MONO[BLOCK_SIZE];
 
+	FILE *inputF32Buffer_MONO_File, *outputF32Buffer_MONO_File;
+
+	outputF32Buffer_MONO_File = fopen("outputF32Buffer_MONO_File.txt", "w");
+	fprintf(outputF32Buffer_MONO_File, "%f\t", 0);
+	fclose(outputF32Buffer_MONO_File);
 	//------------------------------------------------------------------------------------
 	//Sawtooth:
 	float32_t sawtooth_ths=0, sawtooth_freq=0, sawtooth_step=0, sawtooth_sig=0;
@@ -192,17 +200,24 @@ int main(int argc, char* argv[])
 
 			if(sawtooth_sig > sawtooth_ths)
 			{
-				//sawtooth_sig = -sawtooth_sig;
-				sawtooth_sig = 0;
+				sawtooth_sig = -sawtooth_sig;
+				//sawtooth_sig = 0;
 			}
 
 			outputF32Buffer_MONO[i] = sawtooth_sig;
 		}
 
 
-
-
 		//*****************************************************************************************************************
+		//-----------------------------------------------------------------------------------------------------------------
+		//MONO OUT DEBUG FILE - MIXER STEREO
+		outputF32Buffer_MONO_File = fopen("outputF32Buffer_MONO_File.txt", "w+");
+		for(i=0; i<BLOCK_SIZE; i++)
+		{
+			fprintf(outputF32Buffer_MONO_File, "%f\t", outputF32Buffer_MONO[i]);
+		}
+		fclose(outputF32Buffer_MONO_File);
+
 		//-----------------------------------------------------------------------------------------------------------------
 		//MONO OUT - MIXER STEREO
 		for(i=0; i<BLOCK_SIZE; i++)
