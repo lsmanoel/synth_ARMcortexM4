@@ -27,6 +27,8 @@ __IO uint8_t Volume = 100;
 
 GPIO_InitTypeDef GPIO_InitStructure;
 
+const float32_t doisPI = 6.283185307;
+
 int main(int argc, char* argv[])
 {
 	UNUSED(argc);
@@ -38,7 +40,7 @@ int main(int argc, char* argv[])
 	//SampleRate def:
 	float32_t sampleRate;
 	float32_t samplePeriod;
-	sampleRate = (float32_t)AUDIO_FREQUENCY_48K;
+	sampleRate = (float32_t)AUDIO_FREQUENCY_8K;
 	samplePeriod = 1/sampleRate;
 
 	//------------------------------------------------------------------------------------
@@ -61,15 +63,20 @@ int main(int argc, char* argv[])
 	float32_t processBuffer_ping_MONO[BLOCK_SIZE];
 	float32_t processBuffer_pong_MONO[BLOCK_SIZE];
 
+	//------------------------------------------------------------------------------------
 	FILE *inputF32Buffer_MONO_File, *outputF32Buffer_MONO_File;
 
 	outputF32Buffer_MONO_File = fopen("outputF32Buffer_MONO_File.txt", "w");
 	fprintf(outputF32Buffer_MONO_File, "%f\n", 0);
 	fclose(outputF32Buffer_MONO_File);
+
 	//------------------------------------------------------------------------------------
 	//Sawtooth:
 	float32_t sawtooth_ths=0, sawtooth_freq=0, sawtooth_step=0, sawtooth_sig=0;
 
+	//------------------------------------------------------------------------------------
+	//sin:
+	float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_sig=0, sin_1_n  = 0;
 
 #ifdef OS_USE_SEMIHOSTING
 	//Semihosting example
@@ -85,7 +92,7 @@ int main(int argc, char* argv[])
 	//Semihosting example
 #endif
 
-	WOLFSON_PI_AUDIO_Init((INPUT_DEVICE_LINE_IN << 8) | OUTPUT_DEVICE_BOTH, 80, AUDIO_FREQUENCY_48K);
+	WOLFSON_PI_AUDIO_Init((INPUT_DEVICE_LINE_IN << 8) | OUTPUT_DEVICE_BOTH, 80, AUDIO_FREQUENCY_8K);
 
 	WOLFSON_PI_AUDIO_SetInputMode(INPUT_DEVICE_LINE_IN);
 
@@ -190,11 +197,11 @@ int main(int argc, char* argv[])
 		//sawtooth_ths, sawtooth_freq, sawtooth_step, sawtooth_sig;
 		for(i=0; i<BLOCK_SIZE; i++)
 		{
-			sawtooth_ths = 0.5;
+			sawtooth_ths = 0.01;
 
-			sawtooth_freq = 220;
+			sawtooth_freq = 55;
 
-			sawtooth_step = samplePeriod*sawtooth_freq;
+			sawtooth_step = 2*sawtooth_ths*samplePeriod*sawtooth_freq;
 
 			sawtooth_sig = sawtooth_sig + sawtooth_step;
 
@@ -204,20 +211,38 @@ int main(int argc, char* argv[])
 				//sawtooth_sig = 0;
 			}
 
+			//-------------------------------------------------------------------------------------------------------------
+			// Output:
 			outputF32Buffer_MONO[i] = sawtooth_sig;
 		}
 
+		//-----------------------------------------------------------------------------------------------------------------
+		//Geração de sinal - Seno:
+		//float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_sig=0, sin_1_n;
+		for(i=0; i<BLOCK_SIZE; i++)
+		{
+			sin_1_sig = arm_sin_f32(6.283185307*(sin_1_n*samplePeriod));
+			sin_1_step = 2;
+			sin_1_n = sin_1_n + sin_1_step;
+			if(sin_1_n > sampleRate)
+			{
+				sin_1_n  = 0;
+			}
+			//-------------------------------------------------------------------------------------------------------------
+			// Output:
+			outputF32Buffer_MONO[i] = outputF32Buffer_MONO[i]*sin_1_sig;
+		}
 
 		//*****************************************************************************************************************
 		//-----------------------------------------------------------------------------------------------------------------
 		//MONO OUT DEBUG FILE - MIXER STEREO
-		outputF32Buffer_MONO_File = fopen("outputF32Buffer_MONO_File.txt", "a");
-		for(i=0; i<BLOCK_SIZE; i++)
-		{
-			fprintf(outputF32Buffer_MONO_File, "%f\n", outputF32Buffer_MONO[i]);
-		}
-		fclose(outputF32Buffer_MONO_File);
-
+//		outputF32Buffer_MONO_File = fopen("outputF32Buffer_MONO_File.txt", "a");
+//		for(i=0; i<BLOCK_SIZE; i++)
+//		{
+//			fprintf(outputF32Buffer_MONO_File, "%f\n", outputF32Buffer_MONO[i]);
+//		}
+//		fclose(outputF32Buffer_MONO_File);
+//		trace_printf("%.2f ... %.2f\n", sin_1_n, sin_1_n/(float32_t)BLOCK_SIZE);
 		//-----------------------------------------------------------------------------------------------------------------
 		//MONO OUT - MIXER STEREO
 		for(i=0; i<BLOCK_SIZE; i++)
