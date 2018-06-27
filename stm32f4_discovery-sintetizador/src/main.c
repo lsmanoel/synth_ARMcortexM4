@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 	//SampleRate def:
 	float32_t sampleRate;
 	float32_t samplePeriod;
-	sampleRate = (float32_t)AUDIO_FREQUENCY_8K;
+	sampleRate = (float32_t)AUDIO_FREQUENCY_48K;
 	samplePeriod = 1/sampleRate;
 
 	//------------------------------------------------------------------------------------
@@ -72,11 +72,17 @@ int main(int argc, char* argv[])
 
 	//------------------------------------------------------------------------------------
 	//Sawtooth:
-	float32_t sawtooth_ths=0, sawtooth_freq=0, sawtooth_step=0, sawtooth_sig=0;
+	float32_t sawtooth_ths=0, sawtooth_freq=0, sawtooth_step=0;
+	float32_t  sawtooth_sig=0;
 
 	//------------------------------------------------------------------------------------
 	//sin:
-	float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_sig=0, sin_1_n  = 0;
+	float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_n=0;
+	float32_t sin_1_sig[BLOCK_SIZE];
+
+	//------------------------------------------------------------------------------------
+	//onda quadrada:
+	float32_t pulse_1_ths=0, pulse_1_freq=0, pulse_1_datycyclo=0, pulse_1_sig =0;
 
 #ifdef OS_USE_SEMIHOSTING
 	//Semihosting example
@@ -92,7 +98,7 @@ int main(int argc, char* argv[])
 	//Semihosting example
 #endif
 
-	WOLFSON_PI_AUDIO_Init((INPUT_DEVICE_LINE_IN << 8) | OUTPUT_DEVICE_BOTH, 80, AUDIO_FREQUENCY_8K);
+	WOLFSON_PI_AUDIO_Init((INPUT_DEVICE_LINE_IN << 8) | OUTPUT_DEVICE_BOTH, 80, (int)sampleRate);
 
 	WOLFSON_PI_AUDIO_SetInputMode(INPUT_DEVICE_LINE_IN);
 
@@ -161,12 +167,12 @@ int main(int argc, char* argv[])
 		{
 			for(i=0, k_L=0, k_R=0; i<(WOLFSON_PI_AUDIO_TXRX_BUFFER_SIZE/2); i++) {
 				if(i%2) {
-					inputF32Buffer_L[k_L] = (float32_t)(RxBuffer[i]/32768.0);//convert to float LEFT
+					inputF32Buffer_L[k_L] = (float32_t)(RxBuffer[i]/(2*32768.0));//convert to float LEFT
 					k_L++;
 				}
 				else {
 					//TxBuffer[i] = RxBuffer[i];//   RIGHT (canal de baixo no OcenAudio)
-					inputF32Buffer_R[k_R] = (float32_t)(RxBuffer[i]/32768.0);//convert to float RIGHT
+					inputF32Buffer_R[k_R] = (float32_t)(RxBuffer[i]/(2*32768.0));//convert to float RIGHT
 					k_R++;
 				}
 			}
@@ -184,53 +190,87 @@ int main(int argc, char* argv[])
 			buffer_offset = BUFFER_OFFSET_NONE;
 		}
 		//-----------------------------------------------------------------------------------------------------------------
+		//MONO BYPASS - MIXER STEREO
+//		arm_add_f32(inputF32Buffer_R, inputF32Buffer_L, outputF32Buffer_MONO, BLOCK_SIZE);
+
+		//-----------------------------------------------------------------------------------------------------------------
 		//MONO IN - MIXER STEREO
+		//arm_add_f32(inputF32Buffer_R, inputF32Buffer_L, inputF32Buffer_MONO, BLOCK_SIZE);
+
+		//-----------------------------------------------------------------------------------------------------------------
+		//MONO IN - LEFT
 //		for(i=0; i<BLOCK_SIZE; i++)
 //		{
-//			inputF32Buffer_MONO[i] = (inputF32Buffer_R[i]+inputF32Buffer_L[i])/2;//LEFT
+//			inputF32Buffer_MONO[i] = inputF32Buffer_L[i];//LEFT
+//		}
+		//-----------------------------------------------------------------------------------------------------------------
+		//MONO IN - RIGHT
+//		for(i=0; i<BLOCK_SIZE; i++)
+//		{
+//			inputF32Buffer_MONO[i] = inputF32Buffer_R[i];//RIGHT
 //		}
 		//-----------------------------------------------------------------------------------------------------------------
 		//*****************************************************************************************************************
 
 		//-----------------------------------------------------------------------------------------------------------------
 		//Geração de sinal - Sawtooth:
-		//sawtooth_ths, sawtooth_freq, sawtooth_step, sawtooth_sig;
-		for(i=0; i<BLOCK_SIZE; i++)
-		{
-			sawtooth_ths = 0.01;
-
-			sawtooth_freq = 55;
-
-			sawtooth_step = 2*sawtooth_ths*samplePeriod*sawtooth_freq;
-
-			sawtooth_sig = sawtooth_sig + sawtooth_step;
-
-			if(sawtooth_sig > sawtooth_ths)
-			{
-				sawtooth_sig = -sawtooth_sig;
-				//sawtooth_sig = 0;
-			}
-
-			//-------------------------------------------------------------------------------------------------------------
-			// Output:
-			outputF32Buffer_MONO[i] = sawtooth_sig;
-		}
+		//types: float32_t sawtooth_ths, sawtooth_freq, sawtooth_step, sawtooth_sig;
+//		for(i=0; i<BLOCK_SIZE; i++)
+//		{
+//			sawtooth_ths = 0.01;
+//
+//			sawtooth_freq = 55;
+//
+//			sawtooth_step = 2*sawtooth_ths*samplePeriod*sawtooth_freq;
+//
+//			sawtooth_sig = sawtooth_sig + sawtooth_step;
+//
+//			if(sawtooth_sig > sawtooth_ths)
+//			{
+//				sawtooth_sig = -sawtooth_sig;
+//				//sawtooth_sig = 0;
+//			}
+//
+//			//-------------------------------------------------------------------------------------------------------------
+//			// Output:
+//			outputF32Buffer_MONO[i] = sawtooth_sig;
+//		}
 
 		//-----------------------------------------------------------------------------------------------------------------
 		//Geração de sinal - Seno:
-		//float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_sig=0, sin_1_n;
+		//types: float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_sig=0, sin_1_n;
+//		for(i=0; i<BLOCK_SIZE; i++)
+//		{
+//			sin_1_sig[i] = arm_sin_f32(6.283185307*(sin_1_n*samplePeriod));
+//			sin_1_step = 2;
+//			sin_1_n = sin_1_n + sin_1_step;
+//			if(sin_1_n > sampleRate)
+//			{
+//				sin_1_n  = 0;
+//			}
+//		}
+//
+//		arm_mult_f32 (inputF32Buffer_MONO, sin_1_sig, outputF32Buffer_MONO, BLOCK_SIZE);
+
+		//-----------------------------------------------------------------------------------------------------------------
+		//Geração de sinal - Onda Quadrada:
+		//float32_t pulse_1_ths=0, pulse_1_freq=0, pulse_1_datycyclo=0, pulse_1_sig =0;
+		//float32_t pulse_1_sig;
+
+		pulse_1_datycyclo = BLOCK_SIZE/2;
 		for(i=0; i<BLOCK_SIZE; i++)
 		{
-			sin_1_sig = arm_sin_f32(6.283185307*(sin_1_n*samplePeriod));
-			sin_1_step = 2;
-			sin_1_n = sin_1_n + sin_1_step;
-			if(sin_1_n > sampleRate)
+			if(pulse_1_datycyclo > i)
 			{
-				sin_1_n  = 0;
+				pulse_1_sig  = 0.01;
+			}
+			else
+			{
+				pulse_1_sig  = -0.01;
 			}
 			//-------------------------------------------------------------------------------------------------------------
 			// Output:
-			outputF32Buffer_MONO[i] = outputF32Buffer_MONO[i]*sin_1_sig;
+			outputF32Buffer_MONO[i] = pulse_1_sig;
 		}
 
 		//*****************************************************************************************************************
@@ -269,11 +309,11 @@ int main(int argc, char* argv[])
 		{
 			for(i=(WOLFSON_PI_AUDIO_TXRX_BUFFER_SIZE/2), k_L=0, k_R=0; i<WOLFSON_PI_AUDIO_TXRX_BUFFER_SIZE; i++) {
 				if(i%2) {
-					inputF32Buffer_L[k_L] = (float32_t)(RxBuffer[i]/32768.0);//convert to float
+					inputF32Buffer_L[k_L] = (float32_t)(RxBuffer[i]/(2*32768.0));//convert to float
 					k_L++;
 				}
 				else {
-					inputF32Buffer_R[k_R] = (float32_t)(RxBuffer[i]/32768.0);//convert to float RIGHT
+					inputF32Buffer_R[k_R] = (float32_t)(RxBuffer[i]/(2*32768.0));//convert to float RIGHT
 					k_R++;
 				}
 			}

@@ -4,7 +4,7 @@ f0=48000;
 % -------------------------------------------------------------------------
 fileName = 'outputF32Buffer_MONO_File.txt';
 fileID = fopen(fileName, 'r');
-n_part = 40;
+n_part = 5;
 
 sizeOfBuffer = 1024;
 inputArray = zeros(1, fix(n_part*sizeOfBuffer));
