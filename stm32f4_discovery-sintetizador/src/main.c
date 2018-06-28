@@ -28,6 +28,7 @@
 void setInput(int mode);
 void setOutput(int mode);
 void processBlock(void);
+void readInterface(void);
 
 #define NUM_TAPS   21
 #define BLOCK_SIZE (WOLFSON_PI_AUDIO_TXRX_BUFFER_SIZE)/4
@@ -86,12 +87,26 @@ float32_t sin_1_sig[BLOCK_SIZE];
 //onda quadrada:
 float32_t pulse_1_ths=0, pulse_1_freq=0, pulse_1_datycyclo=0, pulse_1_sig =0;
 
+//------------------------------------------------------------------------------------
+//Acelerometro:
+uint32_t AcceleroTicks;
+int16_t AcceleroAxis[3];
+
+#define NUM_TAPS   5
+static q15_t firStateQ15[5 + NUM_TAPS - 1];
+q15_t firCoeffsQ15_mediaMovel[NUM_TAPS] = {6553, 6553, 6553, 6553, 6553, 0};
+q15_t inputQ15Buffer;
+q15_t outputQ15Buffer;
+arm_fir_instance_q15 S15;
+
 //====================================================================================
 //------------------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
 	UNUSED(argc);
 	UNUSED(argv);
+
+	arm_fir_init_q15(&S15, NUM_TAPS, firCoeffsQ15_mediaMovel, &firStateQ15[0], 1);
 
 	sampleRate = (float32_t)AUDIO_FREQUENCY_8K;
 	samplePeriod = 1/sampleRate;
@@ -181,6 +196,7 @@ int main(int argc, char* argv[])
 		{
 			//-----------------------------------------------------------------------------------------------------------------
 			setInput(NO_INPUT);
+			readInterface();
 			processBlock();
 			setOutput(MONO_OUTPUT);
 
@@ -372,6 +388,25 @@ void setOutput(int mode)
 	}
 }
 
+void readInterface()
+{
+	//-----------------------------------------------------------------------------------------------------------------
+	BSP_ACCELERO_GetXYZ(AcceleroAxis);
+	//trace_printf("x:%d y:%d z:%d ticks:%d\n", AcceleroAxis[0], AcceleroAxis[1], AcceleroAxis[2], AcceleroTicks);
+
+	if(AcceleroAxis[0]<0)
+		AcceleroAxis[0] = -AcceleroAxis[0];
+
+	if(AcceleroAxis[1]<0)
+		AcceleroAxis[1] = -AcceleroAxis[1];
+
+	sin_1_step=(float32_t)AcceleroAxis[0];
+
+	inputQ15Buffer = AcceleroAxis[1];
+	arm_fir_fast_q15(&S15, &inputQ15Buffer, &outputQ15Buffer, BLOCK_SIZE);
+	sawtooth_freq=(float32_t)outputQ15Buffer;
+}
+
 void processBlock()
 {
 	//-----------------------------------------------------------------------------------------------------------------
@@ -381,7 +416,7 @@ void processBlock()
 	{
 		sawtooth_ths = 0.01;
 
-		sawtooth_freq = 55;
+		//sawtooth_freq = 55;
 
 		sawtooth_step = 2*sawtooth_ths*samplePeriod*sawtooth_freq;
 
@@ -404,7 +439,7 @@ void processBlock()
 	for(i=0; i<BLOCK_SIZE; i++)
 	{
 		sin_1_sig[i] = arm_sin_f32(6.283185307*(sin_1_n*samplePeriod));
-		sin_1_step = 1;
+		//sin_1_step = 1;
 		sin_1_n = sin_1_n + sin_1_step;
 		if(sin_1_n > sampleRate)
 		{
