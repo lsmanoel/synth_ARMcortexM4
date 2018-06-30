@@ -35,6 +35,7 @@ system/src/cmsis/DSP_Lib/BasicMathFunctions \
 system/src/cmsis/DSP_Lib/CommonTables \
 system/src/cmsis/DSP_Lib/FastMathFunctions \
 system/src/cmsis/DSP_Lib/FilteringFunctions \
+system/src/cmsis/DSP_Lib/StatisticsFunctions \
 system/src/cmsis/DSP_Lib/TransformFunctions \
 system/src/cmsis \
 system/src/cortexm \

@@ -70,8 +70,7 @@ src/main.o: ../src/main.c ../system/include/cmsis/stm32f4xx.h \
  ../include/wolfson_pi_audio.h ../system/src/Components/wm5102/wm5102.h \
  ../system/src/Components/wm5102/../Common/audio.h \
  ../system/src/Components/wm5102/wm5102_register_map.h \
- ../system/include/diag/Trace.h ../include/tests.h ../include/utils.h \
- ../include/dwt.h ../include/filter.h \
+ ../system/include/diag/Trace.h ../include/dwt.h ../include/filter.h \
  ../system/include/cmsis/system_stm32f4xx.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_gpio.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_rcc.h
@@ -225,10 +224,6 @@ src/main.o: ../src/main.c ../system/include/cmsis/stm32f4xx.h \
 ../system/src/Components/wm5102/wm5102_register_map.h:
 
 ../system/include/diag/Trace.h:
-
-../include/tests.h:
-
-../include/utils.h:
 
 ../include/dwt.h:
 

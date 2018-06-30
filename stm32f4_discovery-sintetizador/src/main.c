@@ -5,7 +5,7 @@
 #include <stm32f4_discovery_accelerometer.h>
 #include <wolfson_pi_audio.h>
 #include <diag/Trace.h>
-#include <tests.h>
+//#include <tests.h>
 #include <dwt.h>
 #include "filter.h"
 //#include "stm32f4xx_nucleo.h"
@@ -84,20 +84,148 @@ float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_n=0;
 float32_t sin_1_sig[BLOCK_SIZE];
 
 //------------------------------------------------------------------------------------
-//onda quadrada:
-float32_t pulse_1_ths=0, pulse_1_freq=0, pulse_1_datycyclo=0, pulse_1_sig =0;
-
-//------------------------------------------------------------------------------------
 //Acelerometro:
 uint32_t AcceleroTicks;
 int16_t AcceleroAxis[3];
 
 #define NUM_TAPS   5
-static q15_t firStateQ15[5 + NUM_TAPS - 1];
-q15_t firCoeffsQ15_mediaMovel[NUM_TAPS] = {6553, 6553, 6553, 6553, 6553, 0};
-q15_t inputQ15Buffer;
-q15_t outputQ15Buffer;
-arm_fir_instance_q15 S15;
+#define BUFFER_SIZE_ACEL_X 2
+#define BUFFER_SIZE_ACEL_Y 2
+#define BUFFER_SIZE_ACEL_Z 2
+
+q15_t inputQ15Buffer_acel_x[BUFFER_SIZE_ACEL_X];uint32_t inputQ15Buffer_acel_x_n;
+q15_t outputQ15Buffer_acel_x;
+q15_t inputQ15Buffer_acel_y[BUFFER_SIZE_ACEL_Y];uint32_t inputQ15Buffer_acel_y_n;
+q15_t outputQ15Buffer_acel_y;
+q15_t inputQ15Buffer_acel_z[BUFFER_SIZE_ACEL_Z];uint32_t inputQ15Buffer_acel_z_n;
+q15_t outputQ15Buffer_acel_z;
+
+float32_t fixNote(float32_t chromeNote);
+float32_t fixTime(float32_t chromeTime);
+
+void readInterface()
+{
+	BSP_ACCELERO_GetXYZ(AcceleroAxis);
+
+	//-----------------------------------------------------------------------------------------------------------------
+	//trace_printf("x:%d y:%d z:%d ticks:%d\n", AcceleroAxis[0], AcceleroAxis[1], AcceleroAxis[2], AcceleroTicks);
+
+	//-----------------------------------------------------------------------------------------------------------------
+	if(inputQ15Buffer_acel_x_n<BUFFER_SIZE_ACEL_X)
+	{
+		inputQ15Buffer_acel_x[inputQ15Buffer_acel_x_n] = AcceleroAxis[0];
+		inputQ15Buffer_acel_x_n++;
+	}
+	else
+	{
+		inputQ15Buffer_acel_x_n = 0;
+		arm_mean_q15(inputQ15Buffer_acel_x, BUFFER_SIZE_ACEL_X, &outputQ15Buffer_acel_x);
+		outputQ15Buffer_acel_x = outputQ15Buffer_acel_x + 2048;
+	}
+
+	//-----------------------------------------------------------------------------------------------------------------
+	if(inputQ15Buffer_acel_y_n<BUFFER_SIZE_ACEL_Y)
+	{
+		inputQ15Buffer_acel_y[inputQ15Buffer_acel_y_n] = AcceleroAxis[1];
+		inputQ15Buffer_acel_y_n++;
+	}
+	else
+	{
+		inputQ15Buffer_acel_y_n = 0;
+		arm_mean_q15(inputQ15Buffer_acel_y, BUFFER_SIZE_ACEL_Y, &outputQ15Buffer_acel_y);
+		outputQ15Buffer_acel_y = outputQ15Buffer_acel_y + 2048;
+		//outputQ15Buffer_acel_y = outputQ15Buffer_acel_y/2048;
+		//outputQ15Buffer_acel_y = outputQ15Buffer_acel_y*outputQ15Buffer_acel_y;
+	}
+
+	//-----------------------------------------------------------------------------------------------------------------
+	if(inputQ15Buffer_acel_z_n<BUFFER_SIZE_ACEL_Z)
+	{
+		inputQ15Buffer_acel_z[inputQ15Buffer_acel_z_n] = AcceleroAxis[2];
+		inputQ15Buffer_acel_z_n++;
+	}
+	else
+	{
+		inputQ15Buffer_acel_z_n = 0;
+		arm_mean_q15(inputQ15Buffer_acel_z, BUFFER_SIZE_ACEL_Z, &outputQ15Buffer_acel_z);
+		outputQ15Buffer_acel_z = outputQ15Buffer_acel_z + 2048;
+	}
+	//-----------------------------------------------------------------------------------------------------------------
+
+	//-----------------------------------------------------------------------------------------------------------------
+	//trace_printf("x:%d y:%d z:%d\n", outputQ15Buffer_acel_x, outputQ15Buffer_acel_y, outputQ15Buffer_acel_z);
+}
+
+void processBlock()
+{
+	float32_t sin_freq;
+	//-----------------------------------------------------------------------------------------------------------------
+	//Geração de sinal de TOM - SAWTOOTH:
+	//types: float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_sig=0, sin_1_n;
+	for(i=0; i<BLOCK_SIZE; i++)
+	{
+		sawtooth_ths = 0.01;
+
+		sawtooth_freq = fixNote((float32_t)outputQ15Buffer_acel_y/32);
+		//sawtooth_freq = (float32_t)outputQ15Buffer_acel_y;
+		//sawtooth_freq = 55;
+
+		sawtooth_step = 2*sawtooth_ths*samplePeriod*sawtooth_freq;
+
+        if (GPIO_PIN_SET == HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)) {
+        	//sin_freq = sin_freq*(8.0/3.0);
+        	sawtooth_step = sawtooth_step/2;
+        }
+
+		sawtooth_sig = sawtooth_sig + sawtooth_step;
+
+		if(sawtooth_sig > sawtooth_ths)
+		{
+			sawtooth_sig = -sawtooth_ths;
+			//sawtooth_sig = 0;
+		}
+
+		//-------------------------------------------------------------------------------------------------------------
+		// Output:
+		outputF32Buffer_MONO[i] = sawtooth_sig;
+	}
+	//-----------------------------------------------------------------------------------------------------------------
+	//Geração de sinal LFO - Seno:
+	//types: float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_sig=0, sin_1_n;
+	for(i=0; i<BLOCK_SIZE; i++)
+	{
+		//sin_freq = fixTime(outputQ15Buffer_acel_x);
+		sin_freq = (float32_t)outputQ15Buffer_acel_x/(2048.0);
+		sin_freq = sin_freq * sin_freq;
+		sin_freq = sin_freq * sin_freq;
+		sin_freq = sin_freq * sin_freq;
+
+        if (GPIO_PIN_SET == HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)) {
+        	//sin_freq = sin_freq*(8.0/3.0);
+        	sin_1_n  = sampleRate/(4*sin_freq);
+        }
+
+		sin_1_sig[i] = arm_sin_f32(6.283185307*(sin_freq*sin_1_n*samplePeriod));
+
+		//sin_1_step = 1;
+
+
+		if(sin_1_n < sampleRate/sin_freq)
+		{
+			sin_1_n++;
+		}
+		else
+		{
+			sin_1_n  = 0;
+		}
+	}
+
+	//-----------------------------------------------------------------------------------------------------------------
+	// Output:
+	arm_mult_f32(outputF32Buffer_MONO, sin_1_sig, outputF32Buffer_MONO, BLOCK_SIZE);
+
+	//trace_printf("STooth:%f sin_freq:%f\n", sawtooth_freq, sin_freq);
+}
 
 //====================================================================================
 //------------------------------------------------------------------------------------
@@ -105,8 +233,6 @@ int main(int argc, char* argv[])
 {
 	UNUSED(argc);
 	UNUSED(argv);
-
-	arm_fir_init_q15(&S15, NUM_TAPS, firCoeffsQ15_mediaMovel, &firStateQ15[0], 1);
 
 	sampleRate = (float32_t)AUDIO_FREQUENCY_8K;
 	samplePeriod = 1/sampleRate;
@@ -141,10 +267,21 @@ int main(int argc, char* argv[])
 
 	BSP_ACCELERO_Init();
 
-	TEST_Init();
+	//TEST_Init();
 
 	//------------------------------------------------------------------------------------
 	//GPIO:
+	HAL_Init();
+
+	//Push Button
+    __GPIOA_CLK_ENABLE();
+    GPIO_InitStructure.Pin   = GPIO_PIN_0;
+    GPIO_InitStructure.Mode  = GPIO_MODE_INPUT;
+    GPIO_InitStructure.Pull  = GPIO_NOPULL;
+    //GPIO_InitStructure.Speed = GPIO_SPEED_HIGH;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+	//LED:
     __GPIOD_CLK_ENABLE();
     GPIO_InitStructure.Pin   = GPIO_PIN_12;
     GPIO_InitStructure.Mode  = GPIO_MODE_OUTPUT_PP;
@@ -192,11 +329,12 @@ int main(int argc, char* argv[])
 
 	while (1) {
 
+		readInterface();
+
 		if(buffer_offset == BUFFER_OFFSET_HALF)
 		{
 			//-----------------------------------------------------------------------------------------------------------------
 			setInput(NO_INPUT);
-			readInterface();
 			processBlock();
 			setOutput(MONO_OUTPUT);
 
@@ -388,66 +526,220 @@ void setOutput(int mode)
 	}
 }
 
-void readInterface()
-{
-	//-----------------------------------------------------------------------------------------------------------------
-	BSP_ACCELERO_GetXYZ(AcceleroAxis);
-	//trace_printf("x:%d y:%d z:%d ticks:%d\n", AcceleroAxis[0], AcceleroAxis[1], AcceleroAxis[2], AcceleroTicks);
 
-	if(AcceleroAxis[0]<0)
-		AcceleroAxis[0] = -AcceleroAxis[0];
 
-	if(AcceleroAxis[1]<0)
-		AcceleroAxis[1] = -AcceleroAxis[1];
+#define C1_NOTE_F  C4_NOTE_F/8
+#define CS1_NOTE_F CS4_NOTE_F/8
+#define D1_NOTE_F  D4_NOTE_F/8
+#define DS1_NOTE_F DS4_NOTE_F/8
+#define E1_NOTE_F  E4_NOTE_F/8
+#define F1_NOTE_F  F4_NOTE_F/8
+#define FS1_NOTE_F FS4_NOTE_F/8
+#define G1_NOTE_F  G4_NOTE_F/8
+#define GS1_NOTE_F GS4_NOTE_F/8
+#define A1_NOTE_F  A4_NOTE_F/8
+#define AS1_NOTE_F AS4_NOTE_F/8
+#define B1_NOTE_F  B4_NOTE_F/8
 
-	sin_1_step=(float32_t)AcceleroAxis[0];
+#define C2_NOTE_F  C4_NOTE_F/4
+#define CS2_NOTE_F CS4_NOTE_F/4
+#define D2_NOTE_F  D4_NOTE_F/4
+#define DS2_NOTE_F DS4_NOTE_F/4
+#define E2_NOTE_F  E4_NOTE_F/4
+#define F2_NOTE_F  F4_NOTE_F/4
+#define FS2_NOTE_F FS4_NOTE_F/4
+#define G2_NOTE_F  G4_NOTE_F/4
+#define GS2_NOTE_F GS4_NOTE_F/4
+#define A2_NOTE_F  A4_NOTE_F/4
+#define AS2_NOTE_F AS4_NOTE_F/4
+#define B2_NOTE_F  B4_NOTE_F/4
 
-	inputQ15Buffer = AcceleroAxis[1];
-	arm_fir_fast_q15(&S15, &inputQ15Buffer, &outputQ15Buffer, BLOCK_SIZE);
-	sawtooth_freq=(float32_t)outputQ15Buffer;
-}
+#define C3_NOTE_F  C4_NOTE_F/2
+#define CS3_NOTE_F CS4_NOTE_F/2
+#define D3_NOTE_F  D4_NOTE_F/2
+#define DS3_NOTE_F DS4_NOTE_F/2
+#define E3_NOTE_F  E4_NOTE_F/2
+#define F3_NOTE_F  F4_NOTE_F/2
+#define FS3_NOTE_F FS4_NOTE_F/2
+#define G3_NOTE_F  G4_NOTE_F/2
+#define GS3_NOTE_F GS4_NOTE_F/2
+#define A3_NOTE_F  A4_NOTE_F/2
+#define AS3_NOTE_F AS4_NOTE_F/2
+#define B3_NOTE_F  B4_NOTE_F/2
 
-void processBlock()
-{
-	//-----------------------------------------------------------------------------------------------------------------
-	//Geração de sinal de TOM - SAWTOOTH:
-	//types: float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_sig=0, sin_1_n;
-	for(i=0; i<BLOCK_SIZE; i++)
-	{
-		sawtooth_ths = 0.01;
+#define C4_NOTE_F  261.62557 // Hz
+#define CS4_NOTE_F 277.18263 // Hz
+#define D4_NOTE_F  293.66477 // Hz
+#define DS4_NOTE_F 311.12698 // Hz
+#define E4_NOTE_F  329.62756 // Hz
+#define F4_NOTE_F  349.22823 // Hz
+#define FS4_NOTE_F 369.99442 // Hz
+#define G4_NOTE_F  391.99544 // Hz
+#define GS4_NOTE_F 415.3047 // Hz
+#define A4_NOTE_F  440 // Hz
+#define AS4_NOTE_F 466.16376 // Hz
+#define B4_NOTE_F  493.8833 // Hz
 
-		//sawtooth_freq = 55;
+#define C5_NOTE_F  2*C4_NOTE_F
+#define CS5_NOTE_F 2*CS4_NOTE_F
+#define D5_NOTE_F  2*D4_NOTE_F
+#define DS5_NOTE_F 2*DS4_NOTE_F
+#define E5_NOTE_F  2*E4_NOTE_F
+#define F5_NOTE_F  2*F4_NOTE_F
+#define FS5_NOTE_F 2*FS4_NOTE_F
+#define G5_NOTE_F  2*G4_NOTE_F
+#define GS5_NOTE_F 2*GS4_NOTE_F
+#define A5_NOTE_F  2*A4_NOTE_F
+#define AS5_NOTE_F 2*AS4_NOTE_F
+#define B5_NOTE_F  2*B4_NOTE_F
 
-		sawtooth_step = 2*sawtooth_ths*samplePeriod*sawtooth_freq;
+ float32_t fixNote(float32_t chromeNote)
+ {
+	 float32_t scaleNote;
+	 if(chromeNote < C1_NOTE_F)
+	 {
+		 scaleNote = C1_NOTE_F;
+	 }
+	 else if(chromeNote < D1_NOTE_F)
+	 {
+		 scaleNote = D1_NOTE_F;
+	 }
+	 else if(chromeNote < DS1_NOTE_F)
+	 {
+		 scaleNote = DS1_NOTE_F;
+	 }
+	 else if(chromeNote < F1_NOTE_F)
+	 {
+		 scaleNote = F1_NOTE_F;
+	 }
+	 else if(chromeNote < G1_NOTE_F)
+	 {
+		 scaleNote = G1_NOTE_F;
+	 }
+	 else if(chromeNote < GS1_NOTE_F)
+	 {
+		 scaleNote = GS1_NOTE_F;
+	 }
+	 else if(chromeNote < AS1_NOTE_F)
+	 {
+		 scaleNote = AS1_NOTE_F;
+	 }
+	 //---------------------------------------------------------
+	 else if(chromeNote < C2_NOTE_F)
+	 {
+		 scaleNote = C2_NOTE_F;
+	 }
+	 else if(chromeNote < D2_NOTE_F)
+	 {
+		 scaleNote = D2_NOTE_F;
+	 }
+	 else if(chromeNote < DS2_NOTE_F)
+	 {
+		 scaleNote = DS2_NOTE_F;
+	 }
+	 else if(chromeNote < F2_NOTE_F)
+	 {
+		 scaleNote = F2_NOTE_F;
+	 }
+	 else if(chromeNote < G2_NOTE_F)
+	 {
+		 scaleNote = G2_NOTE_F;
+	 }
+	 else if(chromeNote < GS2_NOTE_F)
+	 {
+		 scaleNote = GS2_NOTE_F;
+	 }
+	 else if(chromeNote < AS2_NOTE_F)
+	 {
+		 scaleNote = AS2_NOTE_F;
+	 }
+	 //---------------------------------------------------------
+	 else if(chromeNote < C3_NOTE_F)
+	 {
+		 scaleNote = C3_NOTE_F;
+	 }
+	 else if(chromeNote < D3_NOTE_F)
+	 {
+		 scaleNote = D3_NOTE_F;
+	 }
+	 else if(chromeNote < DS3_NOTE_F)
+	 {
+		 scaleNote = DS3_NOTE_F;
+	 }
+	 else if(chromeNote < F3_NOTE_F)
+	 {
+		 scaleNote = F3_NOTE_F;
+	 }
+	 else if(chromeNote < G3_NOTE_F)
+	 {
+		 scaleNote = G3_NOTE_F;
+	 }
+	 else if(chromeNote < GS3_NOTE_F)
+	 {
+		 scaleNote = GS3_NOTE_F;
+	 }
+	 else if(chromeNote < AS3_NOTE_F)
+	 {
+		 scaleNote = AS3_NOTE_F;
+	 }
+	 //---------------------------------------------------------
+	 else if(chromeNote < C4_NOTE_F)
+	 {
+		 scaleNote = C4_NOTE_F;
+	 }
+	 else if(chromeNote < D4_NOTE_F)
+	 {
+		 scaleNote = D4_NOTE_F;
+	 }
+	 else if(chromeNote < DS4_NOTE_F)
+	 {
+		 scaleNote = DS4_NOTE_F;
+	 }
+	 else if(chromeNote < F4_NOTE_F)
+	 {
+		 scaleNote = F4_NOTE_F;
+	 }
+	 else if(chromeNote < G4_NOTE_F)
+	 {
+		 scaleNote = G4_NOTE_F;
+	 }
+	 else if(chromeNote < GS4_NOTE_F)
+	 {
+		 scaleNote = GS4_NOTE_F;
+	 }
+	 else if(chromeNote < AS4_NOTE_F)
+	 {
+		 scaleNote = AS4_NOTE_F;
+	 }
+	 //---------------------------------------------------------
+	 else if(chromeNote < C5_NOTE_F)
+	 {
+		 scaleNote = C5_NOTE_F;
+	 }
+	 else if(chromeNote < D5_NOTE_F)
+	 {
+		 scaleNote = D5_NOTE_F;
+	 }
+	 else if(chromeNote < DS5_NOTE_F)
+	 {
+		 scaleNote = DS5_NOTE_F;
+	 }
+	 else if(chromeNote < F5_NOTE_F)
+	 {
+		 scaleNote = F5_NOTE_F;
+	 }
+	 else if(chromeNote < G5_NOTE_F)
+	 {
+		 scaleNote = G5_NOTE_F;
+	 }
+	 else if(chromeNote < GS5_NOTE_F)
+	 {
+		 scaleNote = GS5_NOTE_F;
+	 }
+	 else if(chromeNote < AS5_NOTE_F)
+	 {
+		 scaleNote = AS5_NOTE_F;
+	 }
 
-		sawtooth_sig = sawtooth_sig + sawtooth_step;
-
-		if(sawtooth_sig > sawtooth_ths)
-		{
-			sawtooth_sig = -sawtooth_ths;
-			//sawtooth_sig = 0;
-		}
-
-		//-------------------------------------------------------------------------------------------------------------
-		// Output:
-		outputF32Buffer_MONO[i] = sawtooth_sig;
-	}
-
-	//-----------------------------------------------------------------------------------------------------------------
-	//Geração de sinal LFO - Seno:
-	//types: float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_sig=0, sin_1_n;
-	for(i=0; i<BLOCK_SIZE; i++)
-	{
-		sin_1_sig[i] = arm_sin_f32(6.283185307*(sin_1_n*samplePeriod));
-		//sin_1_step = 1;
-		sin_1_n = sin_1_n + sin_1_step;
-		if(sin_1_n > sampleRate)
-		{
-			sin_1_n  = 0;
-		}
-	}
-
-	//-----------------------------------------------------------------------------------------------------------------
-	// Output:
-	arm_mult_f32 (outputF32Buffer_MONO, sin_1_sig, outputF32Buffer_MONO, BLOCK_SIZE);
-}
+	return scaleNote;
+ }

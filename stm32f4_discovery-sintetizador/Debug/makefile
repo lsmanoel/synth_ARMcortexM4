@@ -14,6 +14,7 @@ RM := rm -rf
 -include system/src/diag/subdir.mk
 -include system/src/cortexm/subdir.mk
 -include system/src/cmsis/DSP_Lib/TransformFunctions/subdir.mk
+-include system/src/cmsis/DSP_Lib/StatisticsFunctions/subdir.mk
 -include system/src/cmsis/DSP_Lib/FilteringFunctions/subdir.mk
 -include system/src/cmsis/DSP_Lib/FastMathFunctions/subdir.mk
 -include system/src/cmsis/DSP_Lib/CommonTables/subdir.mk
