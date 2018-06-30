@@ -101,7 +101,6 @@ q15_t inputQ15Buffer_acel_z[BUFFER_SIZE_ACEL_Z];uint32_t inputQ15Buffer_acel_z_n
 q15_t outputQ15Buffer_acel_z;
 
 float32_t fixNote(float32_t chromeNote);
-float32_t fixTime(float32_t chromeTime);
 
 void readInterface()
 {
@@ -161,7 +160,9 @@ void processBlock()
 	float32_t sin_freq;
 	//-----------------------------------------------------------------------------------------------------------------
 	//Geração de sinal de TOM - SAWTOOTH:
-	//types: float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_sig=0, sin_1_n;
+	//------------------------------------------------------------------------------------
+	//float32_t sawtooth_ths=0, sawtooth_freq=0, sawtooth_step=0;
+	//float32_t  sawtooth_sig=0;
 	for(i=0; i<BLOCK_SIZE; i++)
 	{
 		sawtooth_ths = 0.01;
@@ -173,7 +174,6 @@ void processBlock()
 		sawtooth_step = 2*sawtooth_ths*samplePeriod*sawtooth_freq;
 
         if (GPIO_PIN_SET == HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)) {
-        	//sin_freq = sin_freq*(8.0/3.0);
         	sawtooth_step = sawtooth_step/2;
         }
 
@@ -198,11 +198,10 @@ void processBlock()
 		sin_freq = (float32_t)outputQ15Buffer_acel_x/(2048.0);
 		sin_freq = sin_freq * sin_freq;
 		sin_freq = sin_freq * sin_freq;
-		sin_freq = sin_freq * sin_freq;
 
         if (GPIO_PIN_SET == HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)) {
         	//sin_freq = sin_freq*(8.0/3.0);
-        	sin_1_n  = sampleRate/(4*sin_freq);
+        	sin_1_n  = sampleRate/(4.0*sin_freq);
         }
 
 		sin_1_sig[i] = arm_sin_f32(6.283185307*(sin_freq*sin_1_n*samplePeriod));
@@ -210,9 +209,38 @@ void processBlock()
 		//sin_1_step = 1;
 
 
-		if(sin_1_n < sampleRate/sin_freq)
+
+		if(sin_1_n < 0.2*sampleRate/sin_freq)
 		{
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
 			sin_1_n++;
+		}
+		else if(sin_1_n < 0.4*sampleRate/sin_freq)
+		{
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
+			sin_1_n++;
+		}
+		else if(sin_1_n < 0.6*sampleRate/sin_freq)
+		{
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
+			sin_1_n++;
+		}
+		else if(sin_1_n < 0.8*sampleRate/sin_freq)
+		{
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
+		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
+		    sin_1_n++;
 		}
 		else
 		{
@@ -230,7 +258,7 @@ void processBlock()
 //====================================================================================
 //------------------------------------------------------------------------------------
 int main(int argc, char* argv[])
-{
+ {
 	UNUSED(argc);
 	UNUSED(argv);
 
@@ -322,10 +350,10 @@ int main(int argc, char* argv[])
     HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
 
-    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
+//    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
+//    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
+//    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
+//    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
 
 	while (1) {
 
