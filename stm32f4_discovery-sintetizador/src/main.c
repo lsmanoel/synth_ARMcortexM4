@@ -173,7 +173,7 @@ void processBlock()
 		sawtooth_step = 2*sawtooth_ths*samplePeriod*sawtooth_freq;
 
         if (GPIO_PIN_SET == HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)) {
-        	sawtooth_step = sawtooth_step/2;
+        	sawtooth_step = 2*sawtooth_step;
         }
 
 		sawtooth_sig = sawtooth_sig + sawtooth_step;
@@ -370,22 +370,6 @@ int main(int argc, char* argv[])
 //    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
 //    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
 //    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
-
-	#define BLOCK_SIZE (WOLFSON_PI_AUDIO_TXRX_BUFFER_SIZE)/2
-	for(i=0, k_L=0, k_R=0; i<(WOLFSON_PI_AUDIO_TXRX_BUFFER_SIZE/2); i++)
-	{
-		if(i%2)
-		{
-			inputF32Buffer_L[k_L] = (float32_t)(RxBuffer[i]/(2*32768.0));//convert to float LEFT
-			k_L++;
-		}
-		else
-		{
-			//TxBuffer[i] = RxBuffer[i];//   RIGHT (canal de baixo no OcenAudio)
-			inputF32Buffer_R[k_R] = (float32_t)(RxBuffer[i]/(2*32768.0));//convert to float RIGHT
-			k_R++;
-		}
-	}
 
 	while (1) {
 
@@ -627,7 +611,7 @@ void setOutput(int mode)
 #define AS3_NOTE_F AS4_NOTE_F/2
 #define B3_NOTE_F  B4_NOTE_F/2
 
-#define C4_NOTE_F  261.62557 // Hz
+#define C4_NOTE_F  261.62557 // Hz Dó
 #define CS4_NOTE_F 277.18263 // Hz
 #define D4_NOTE_F  293.66477 // Hz
 #define DS4_NOTE_F 311.12698 // Hz
