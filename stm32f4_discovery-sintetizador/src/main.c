@@ -158,18 +158,17 @@ void readInterface()
 void processBlock()
 {
 	float32_t sin_freq;
-	//-----------------------------------------------------------------------------------------------------------------
-	//Geração de sinal de TOM - SAWTOOTH:
-	//------------------------------------------------------------------------------------
-	//float32_t sawtooth_ths=0, sawtooth_freq=0, sawtooth_step=0;
-	//float32_t  sawtooth_sig=0;
+
+	//-------------------------------------------------------------------
+	//SAWTOOTH:
+	//-------------------------------------------------------------------
+	//float32_t sawtooth_ths=0, sawtooth_freq=0, sawtooth_step=0, sawtooth_sig=0;
 	for(i=0; i<BLOCK_SIZE; i++)
 	{
-		sawtooth_ths = 0.01;
-
+		//-------------------------------------------------------------------
+		// Output:
 		sawtooth_freq = fixNote((float32_t)outputQ15Buffer_acel_y/32);
-		//sawtooth_freq = (float32_t)outputQ15Buffer_acel_y;
-		//sawtooth_freq = 55;
+		sawtooth_ths = 0.01;
 
 		sawtooth_step = 2*sawtooth_ths*samplePeriod*sawtooth_freq;
 
@@ -182,33 +181,32 @@ void processBlock()
 		if(sawtooth_sig > sawtooth_ths)
 		{
 			sawtooth_sig = -sawtooth_ths;
-			//sawtooth_sig = 0;
 		}
 
-		//-------------------------------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------
 		// Output:
 		outputF32Buffer_MONO[i] = sawtooth_sig;
 	}
-	//-----------------------------------------------------------------------------------------------------------------
-	//Geração de sinal LFO - Seno:
+
+	//-------------------------------------------------------------------
+	//LFO - Sin:
+	//-------------------------------------------------------------------
 	//types: float32_t sin_1_ths=0, sin_1_freq=0, sin_1_step=0, sin_1_sig=0, sin_1_n;
 	for(i=0; i<BLOCK_SIZE; i++)
 	{
-		//sin_freq = fixTime(outputQ15Buffer_acel_x);
+		//-------------------------------------------------------------------
+		// Output:
 		sin_freq = (float32_t)outputQ15Buffer_acel_x/(2048.0);
-		sin_freq = sin_freq * sin_freq;
-		sin_freq = sin_freq * sin_freq;
+
+		sin_freq = sin_freq * sin_freq;//sin_freq^2
+		sin_freq = sin_freq * sin_freq;//sin_freq^3
 
         if (GPIO_PIN_SET == HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)) {
-        	//sin_freq = sin_freq*(8.0/3.0);
+        	sin_freq = sin_freq*(8.0/3.0);//
         	sin_1_n  = sampleRate/(4.0*sin_freq);
         }
 
-		sin_1_sig[i] = arm_sin_f32(6.283185307*(sin_freq*sin_1_n*samplePeriod));
-
-		//sin_1_step = 1;
-
-
+		sin_1_sig[i] = arm_sin_f32((6.283185307/2.0)*(sin_freq*sin_1_n*samplePeriod));
 
 		if(sin_1_n < 0.2*sampleRate/sin_freq)
 		{
@@ -242,18 +240,35 @@ void processBlock()
 		    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
 		    sin_1_n++;
 		}
+		else if(sin_1_n < sampleRate/sin_freq)
+		{
+			sin_1_n++;
+		}
 		else
 		{
-			sin_1_n  = 0;
+			sin_1_n=0;
 		}
 	}
 
-	//-----------------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------
 	// Output:
 	arm_mult_f32(outputF32Buffer_MONO, sin_1_sig, outputF32Buffer_MONO, BLOCK_SIZE);
 
 	//trace_printf("STooth:%f sin_freq:%f\n", sawtooth_freq, sin_freq);
 }
+
+//#define NO_INPUT 0
+//#define MONO_BYPASS 1
+//#define MONO_IN_MIXED_STEREO 2
+//#define MONO_IN_LEFT 3
+//#define MONO_IN_RIGHT 4
+//
+//#define STEREO_OUTPUT 0
+//#define MONO_OUTPUT_DEBUG_FILE 1
+//#define MONO_OUTPUT 2
+
+#define INPUT_MODE NO_INPUT
+#define OUTPUT_MODE MONO_OUTPUT
 
 //====================================================================================
 //------------------------------------------------------------------------------------
@@ -362,9 +377,9 @@ int main(int argc, char* argv[])
 		if(buffer_offset == BUFFER_OFFSET_HALF)
 		{
 			//-----------------------------------------------------------------------------------------------------------------
-			setInput(NO_INPUT);
+			setInput(INPUT_MODE);
 			processBlock();
-			setOutput(MONO_OUTPUT);
+			setOutput(OUTPUT_MODE);
 
 			//-----------------------------------------------------------------------------------------------------------------
 			//*****************************************************************************************************************
@@ -404,9 +419,9 @@ int main(int argc, char* argv[])
 		if(buffer_offset == BUFFER_OFFSET_FULL)
 		{
 			//-----------------------------------------------------------------------------------------------------------------
-			setInput(NO_INPUT);
+			setInput(INPUT_MODE);
 			processBlock();
-			setOutput(MONO_OUTPUT);
+			setOutput(OUTPUT_MODE);
 
 			//*****************************************************************************************************************
 			for(i=(WOLFSON_PI_AUDIO_TXRX_BUFFER_SIZE/2), k_L=0, k_R=0; i<WOLFSON_PI_AUDIO_TXRX_BUFFER_SIZE; i++)
@@ -529,7 +544,7 @@ void setOutput(int mode)
 	if(mode){
 		switch(mode)
 		{
-			case MONO_BYPASS:
+			case MONO_OUTPUT_DEBUG_FILE:
 				//MONO OUT DEBUG FILE - MIXER STEREO
 				outputF32Buffer_MONO_File = fopen("outputF32Buffer_MONO_File.txt", "a");
 				for(i=0; i<BLOCK_SIZE; i++)
@@ -539,6 +554,7 @@ void setOutput(int mode)
 				fclose(outputF32Buffer_MONO_File);
 
 				trace_printf("%.2f ... %.2f\n", sin_1_n, sin_1_n/(float32_t)BLOCK_SIZE);
+//BREAK POINT ---------------------------------------------------------------------------------------------------------------------
 				break;
 
 			case MONO_OUTPUT:

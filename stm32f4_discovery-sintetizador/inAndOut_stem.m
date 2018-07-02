@@ -3,8 +3,9 @@ clear all
 f0=48000;
 % -------------------------------------------------------------------------
 fileName = 'outputF32Buffer_MONO_File.txt';
+% fileName = 'outputF32Buffer_MONO_File_save1.txt';
 fileID = fopen(fileName, 'r');
-n_part = 3;
+n_part = 4;
 
 sizeOfBuffer = 1024;
 inputArray = zeros(1, fix(n_part*sizeOfBuffer));

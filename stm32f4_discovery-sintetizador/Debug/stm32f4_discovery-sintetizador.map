@@ -22587,6 +22587,7 @@ Discarded input sections
  .bss           0x00000000        0x0 ./src/main.o
  .text.WOLFSON_PI_AUDIO_OUT_Error_CallBack
                 0x00000000        0x4 ./src/main.o
+ .text.fixNote  0x00000000      0x54c ./src/main.o
  .bss.sin_1_freq
                 0x00000000        0x4 ./src/main.o
  .rodata.doisPI
@@ -24145,10 +24146,10 @@ END GROUP
 
 .inits          0x080003ec       0x28
                 0x080003ec                __data_regions_array_start = .
-                0x080003ec        0x4 LONG 0x800d604 LOADADDR (.data)
+                0x080003ec        0x4 LONG 0x800d094 LOADADDR (.data)
                 0x080003f0        0x4 LONG 0x20000000 ADDR (.data)
                 0x080003f4        0x4 LONG 0x200002e4 (ADDR (.data) + SIZEOF (.data))
-                0x080003f8        0x4 LONG 0x800d604 LOADADDR (.data_CCMRAM)
+                0x080003f8        0x4 LONG 0x800d094 LOADADDR (.data_CCMRAM)
                 0x080003fc        0x4 LONG 0x10000000 ADDR (.data_CCMRAM)
                 0x08000400        0x4 LONG 0x10000000 (ADDR (.data_CCMRAM) + SIZEOF (.data_CCMRAM))
                 0x08000404                __data_regions_array_end = .
@@ -24180,7 +24181,7 @@ END GROUP
 .flashtext
  *(.flashtext .flashtext.*)
 
-.text           0x08000420     0xd1e3
+.text           0x08000420     0xcc73
  *(.text .text.*)
  .text.SPIx_MspInit
                 0x08000420       0x58 ./system/src/stm32f4_discovery/stm32f4_discovery.o
@@ -24637,683 +24638,680 @@ END GROUP
                 0x08004ccc       0xf8 ./src/main.o
                 0x08004ccc                setOutput
  *fill*         0x08004dc4        0x4 
- .text.fixNote  0x08004dc8      0x54c ./src/main.o
-                0x08004dc8                fixNote
- *fill*         0x08005314        0x4 
  .text.processBlock
-                0x08005318      0x3dc ./src/main.o
-                0x08005318                processBlock
- .text.main     0x080056f4      0x480 ./src/main.o
-                0x080056f4                main
+                0x08004dc8      0x3c8 ./src/main.o
+                0x08004dc8                processBlock
+ .text.main     0x08005190      0x480 ./src/main.o
+                0x08005190                main
  .text.EXTI0_IRQHandler
-                0x08005b74        0xc ./src/stm32f4xx_it.o
-                0x08005b74                EXTI0_IRQHandler
+                0x08005610        0xc ./src/stm32f4xx_it.o
+                0x08005610                EXTI0_IRQHandler
  .text.DMA1_Stream0_IRQHandler
-                0x08005b80       0x10 ./src/stm32f4xx_it.o
-                0x08005b80                DMA1_Stream0_IRQHandler
+                0x0800561c       0x10 ./src/stm32f4xx_it.o
+                0x0800561c                DMA1_Stream0_IRQHandler
  .text.DMA1_Stream5_IRQHandler
-                0x08005b90       0x10 ./src/stm32f4xx_it.o
-                0x08005b90                DMA1_Stream5_IRQHandler
+                0x0800562c       0x10 ./src/stm32f4xx_it.o
+                0x0800562c                DMA1_Stream5_IRQHandler
  .text.NMI_Handler
-                0x08005ba0        0x4 ./src/stm32f4xx_it.o
-                0x08005ba0                NMI_Handler
+                0x0800563c        0x4 ./src/stm32f4xx_it.o
+                0x0800563c                NMI_Handler
  .text.HardFault_Handler
-                0x08005ba4        0x4 ./src/stm32f4xx_it.o
-                0x08005ba4                HardFault_Handler
+                0x08005640        0x4 ./src/stm32f4xx_it.o
+                0x08005640                HardFault_Handler
  .text.MemManage_Handler
-                0x08005ba8        0x4 ./src/stm32f4xx_it.o
-                0x08005ba8                MemManage_Handler
+                0x08005644        0x4 ./src/stm32f4xx_it.o
+                0x08005644                MemManage_Handler
  .text.BusFault_Handler
-                0x08005bac        0x4 ./src/stm32f4xx_it.o
-                0x08005bac                BusFault_Handler
+                0x08005648        0x4 ./src/stm32f4xx_it.o
+                0x08005648                BusFault_Handler
  .text.UsageFault_Handler
-                0x08005bb0        0x4 ./src/stm32f4xx_it.o
-                0x08005bb0                UsageFault_Handler
+                0x0800564c        0x4 ./src/stm32f4xx_it.o
+                0x0800564c                UsageFault_Handler
  .text.SVC_Handler
-                0x08005bb4        0x4 ./src/stm32f4xx_it.o
-                0x08005bb4                SVC_Handler
+                0x08005650        0x4 ./src/stm32f4xx_it.o
+                0x08005650                SVC_Handler
  .text.DebugMon_Handler
-                0x08005bb8        0x4 ./src/stm32f4xx_it.o
-                0x08005bb8                DebugMon_Handler
+                0x08005654        0x4 ./src/stm32f4xx_it.o
+                0x08005654                DebugMon_Handler
  .text.PendSV_Handler
-                0x08005bbc        0x4 ./src/stm32f4xx_it.o
-                0x08005bbc                PendSV_Handler
+                0x08005658        0x4 ./src/stm32f4xx_it.o
+                0x08005658                PendSV_Handler
  .text.SysTick_Handler
-                0x08005bc0        0xc ./src/stm32f4xx_it.o
-                0x08005bc0                SysTick_Handler
+                0x0800565c        0xc ./src/stm32f4xx_it.o
+                0x0800565c                SysTick_Handler
  .text.TEST_GetEQGains
-                0x08005bcc       0x5c ./src/tests.o
+                0x08005668       0x5c ./src/tests.o
  .text.TEST_Main
-                0x08005c28      0x168 ./src/tests.o
-                0x08005c28                TEST_Main
+                0x080056c4      0x168 ./src/tests.o
+                0x080056c4                TEST_Main
  .text.HAL_GPIO_EXTI_Callback
-                0x08005d90       0xc8 ./src/tests.o
-                0x08005d90                HAL_GPIO_EXTI_Callback
+                0x0800582c       0xc8 ./src/tests.o
+                0x0800582c                HAL_GPIO_EXTI_Callback
  .text.utilsConsumeNonNumeric
-                0x08005e58       0x4c ./src/utils.o
-                0x08005e58                utilsConsumeNonNumeric
+                0x080058f4       0x4c ./src/utils.o
+                0x080058f4                utilsConsumeNonNumeric
  .text.utilsGetOption
-                0x08005ea4       0x90 ./src/utils.o
-                0x08005ea4                utilsGetOption
+                0x08005940       0x90 ./src/utils.o
+                0x08005940                utilsGetOption
  .text.SPIx_Msp_Init
-                0x08005f34       0xb0 ./src/wolfson_pi_audio.o
+                0x080059d0       0xb0 ./src/wolfson_pi_audio.o
  .text.I2Sx_Msp_Init
-                0x08005fe4      0x1cc ./src/wolfson_pi_audio.o
+                0x08005a80      0x1cc ./src/wolfson_pi_audio.o
  .text.I2Sx_Init
-                0x080061b0       0x54 ./src/wolfson_pi_audio.o
+                0x08005c4c       0x54 ./src/wolfson_pi_audio.o
  .text.SPIx_Init
-                0x08006204       0x44 ./src/wolfson_pi_audio.o
+                0x08005ca0       0x44 ./src/wolfson_pi_audio.o
  .text.SPIx_Error
-                0x08006248       0x14 ./src/wolfson_pi_audio.o
+                0x08005ce4       0x14 ./src/wolfson_pi_audio.o
  .text.SPIx_WriteData
-                0x0800625c       0x58 ./src/wolfson_pi_audio.o
+                0x08005cf8       0x58 ./src/wolfson_pi_audio.o
  .text.SPIx_ReadData
-                0x080062b4       0x64 ./src/wolfson_pi_audio.o
+                0x08005d50       0x64 ./src/wolfson_pi_audio.o
  .text.WOLFSON_PI_AUDIO_Init
-                0x08006318       0xb4 ./src/wolfson_pi_audio.o
-                0x08006318                WOLFSON_PI_AUDIO_Init
+                0x08005db4       0xb4 ./src/wolfson_pi_audio.o
+                0x08005db4                WOLFSON_PI_AUDIO_Init
  .text.WOLFSON_PI_AUDIO_Play
-                0x080063cc       0x38 ./src/wolfson_pi_audio.o
-                0x080063cc                WOLFSON_PI_AUDIO_Play
+                0x08005e68       0x38 ./src/wolfson_pi_audio.o
+                0x08005e68                WOLFSON_PI_AUDIO_Play
  .text.WOLFSON_PI_AUDIO_Pause
-                0x08006404       0x24 ./src/wolfson_pi_audio.o
-                0x08006404                WOLFSON_PI_AUDIO_Pause
+                0x08005ea0       0x24 ./src/wolfson_pi_audio.o
+                0x08005ea0                WOLFSON_PI_AUDIO_Pause
  .text.WOLFSON_PI_AUDIO_Resume
-                0x08006428       0x24 ./src/wolfson_pi_audio.o
-                0x08006428                WOLFSON_PI_AUDIO_Resume
+                0x08005ec4       0x24 ./src/wolfson_pi_audio.o
+                0x08005ec4                WOLFSON_PI_AUDIO_Resume
  .text.WOLFSON_PI_AUDIO_Stop
-                0x0800644c       0x48 ./src/wolfson_pi_audio.o
-                0x0800644c                WOLFSON_PI_AUDIO_Stop
+                0x08005ee8       0x48 ./src/wolfson_pi_audio.o
+                0x08005ee8                WOLFSON_PI_AUDIO_Stop
  .text.WOLFSON_PI_AUDIO_SetVolume
-                0x08006494       0x14 ./src/wolfson_pi_audio.o
-                0x08006494                WOLFSON_PI_AUDIO_SetVolume
+                0x08005f30       0x14 ./src/wolfson_pi_audio.o
+                0x08005f30                WOLFSON_PI_AUDIO_SetVolume
  .text.WOLFSON_PI_AUDIO_SetMute
-                0x080064a8       0x14 ./src/wolfson_pi_audio.o
-                0x080064a8                WOLFSON_PI_AUDIO_SetMute
+                0x08005f44       0x14 ./src/wolfson_pi_audio.o
+                0x08005f44                WOLFSON_PI_AUDIO_SetMute
  .text.WOLFSON_PI_AUDIO_SetFilter
-                0x080064bc       0x18 ./src/wolfson_pi_audio.o
-                0x080064bc                WOLFSON_PI_AUDIO_SetFilter
+                0x08005f58       0x18 ./src/wolfson_pi_audio.o
+                0x08005f58                WOLFSON_PI_AUDIO_SetFilter
  .text.WOLFSON_PI_AUDIO_SetEqualizer
-                0x080064d4       0x20 ./src/wolfson_pi_audio.o
-                0x080064d4                WOLFSON_PI_AUDIO_SetEqualizer
+                0x08005f70       0x20 ./src/wolfson_pi_audio.o
+                0x08005f70                WOLFSON_PI_AUDIO_SetEqualizer
  .text.WOLFSON_PI_AUDIO_SetInputMode
-                0x080064f4       0x14 ./src/wolfson_pi_audio.o
-                0x080064f4                WOLFSON_PI_AUDIO_SetInputMode
+                0x08005f90       0x14 ./src/wolfson_pi_audio.o
+                0x08005f90                WOLFSON_PI_AUDIO_SetInputMode
  .text.WOLFSON_PI_AUDIO_SetFrequency
-                0x08006508       0x88 ./src/wolfson_pi_audio.o
-                0x08006508                WOLFSON_PI_AUDIO_SetFrequency
+                0x08005fa4       0x88 ./src/wolfson_pi_audio.o
+                0x08005fa4                WOLFSON_PI_AUDIO_SetFrequency
  .text.HAL_I2S_RxCpltCallback
-                0x08006590       0x14 ./src/wolfson_pi_audio.o
-                0x08006590                HAL_I2S_RxCpltCallback
+                0x0800602c       0x14 ./src/wolfson_pi_audio.o
+                0x0800602c                HAL_I2S_RxCpltCallback
  .text.HAL_I2S_RxHalfCpltCallback
-                0x080065a4       0x14 ./src/wolfson_pi_audio.o
-                0x080065a4                HAL_I2S_RxHalfCpltCallback
+                0x08006040       0x14 ./src/wolfson_pi_audio.o
+                0x08006040                HAL_I2S_RxHalfCpltCallback
  .text.WOLFSON_PI_AUDIO_Error_CallBack
-                0x080065b8        0x4 ./src/wolfson_pi_audio.o
-                0x080065b8                WOLFSON_PI_AUDIO_Error_CallBack
+                0x08006054        0x4 ./src/wolfson_pi_audio.o
+                0x08006054                WOLFSON_PI_AUDIO_Error_CallBack
  .text.HAL_I2S_ErrorCallback
-                0x080065bc       0x14 ./src/wolfson_pi_audio.o
-                0x080065bc                HAL_I2S_ErrorCallback
+                0x08006058       0x14 ./src/wolfson_pi_audio.o
+                0x08006058                HAL_I2S_ErrorCallback
  .text.EXTERNAL_AUDIO_IO_Init
-                0x080065d0       0x88 ./src/wolfson_pi_audio.o
-                0x080065d0                EXTERNAL_AUDIO_IO_Init
+                0x0800606c       0x88 ./src/wolfson_pi_audio.o
+                0x0800606c                EXTERNAL_AUDIO_IO_Init
  .text.EXTERNAL_AUDIO_IO_DeInit
-                0x08006658        0x4 ./src/wolfson_pi_audio.o
-                0x08006658                EXTERNAL_AUDIO_IO_DeInit
+                0x080060f4        0x4 ./src/wolfson_pi_audio.o
+                0x080060f4                EXTERNAL_AUDIO_IO_DeInit
  .text.EXTERNAL_AUDIO_IO_Write
-                0x0800665c        0xc ./src/wolfson_pi_audio.o
-                0x0800665c                EXTERNAL_AUDIO_IO_Write
+                0x080060f8        0xc ./src/wolfson_pi_audio.o
+                0x080060f8                EXTERNAL_AUDIO_IO_Write
  .text.EXTERNAL_AUDIO_IO_Read
-                0x08006668        0xc ./src/wolfson_pi_audio.o
-                0x08006668                EXTERNAL_AUDIO_IO_Read
+                0x08006104        0xc ./src/wolfson_pi_audio.o
+                0x08006104                EXTERNAL_AUDIO_IO_Read
  .text.EXTERNAL_AUDIO_IO_Delay
-                0x08006674        0x8 ./src/wolfson_pi_audio.o
-                0x08006674                EXTERNAL_AUDIO_IO_Delay
- .text          0x0800667c      0x370 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
-                0x0800667c                __aeabi_drsub
-                0x08006684                __aeabi_dsub
-                0x08006684                __subdf3
-                0x08006688                __aeabi_dadd
-                0x08006688                __adddf3
-                0x08006900                __floatunsidf
-                0x08006900                __aeabi_ui2d
-                0x08006920                __floatsidf
-                0x08006920                __aeabi_i2d
-                0x08006944                __aeabi_f2d
-                0x08006944                __extendsfdf2
-                0x08006980                __floatundidf
-                0x08006980                __aeabi_ul2d
-                0x08006990                __floatdidf
-                0x08006990                __aeabi_l2d
- .text          0x080069ec      0x424 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_muldivdf3.o)
-                0x080069ec                __aeabi_dmul
-                0x080069ec                __muldf3
-                0x08006c40                __divdf3
-                0x08006c40                __aeabi_ddiv
- .text          0x08006e10      0x110 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
-                0x08006e10                __gtdf2
-                0x08006e10                __gedf2
-                0x08006e18                __ltdf2
-                0x08006e18                __ledf2
-                0x08006e20                __nedf2
-                0x08006e20                __eqdf2
-                0x08006e20                __cmpdf2
-                0x08006e9c                __aeabi_cdrcmple
-                0x08006eac                __aeabi_cdcmpeq
-                0x08006eac                __aeabi_cdcmple
-                0x08006ebc                __aeabi_dcmpeq
-                0x08006ed0                __aeabi_dcmplt
-                0x08006ee4                __aeabi_dcmple
-                0x08006ef8                __aeabi_dcmpge
-                0x08006f0c                __aeabi_dcmpgt
- .text          0x08006f20       0xa0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_truncdfsf2.o)
-                0x08006f20                __truncdfsf2
-                0x08006f20                __aeabi_d2f
- .text.__errno  0x08006fc0        0xc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-errno.o)
-                0x08006fc0                __errno
+                0x08006110        0x8 ./src/wolfson_pi_audio.o
+                0x08006110                EXTERNAL_AUDIO_IO_Delay
+ .text          0x08006118      0x370 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+                0x08006118                __aeabi_drsub
+                0x08006120                __aeabi_dsub
+                0x08006120                __subdf3
+                0x08006124                __aeabi_dadd
+                0x08006124                __adddf3
+                0x0800639c                __floatunsidf
+                0x0800639c                __aeabi_ui2d
+                0x080063bc                __floatsidf
+                0x080063bc                __aeabi_i2d
+                0x080063e0                __aeabi_f2d
+                0x080063e0                __extendsfdf2
+                0x0800641c                __floatundidf
+                0x0800641c                __aeabi_ul2d
+                0x0800642c                __floatdidf
+                0x0800642c                __aeabi_l2d
+ .text          0x08006488      0x424 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_muldivdf3.o)
+                0x08006488                __aeabi_dmul
+                0x08006488                __muldf3
+                0x080066dc                __divdf3
+                0x080066dc                __aeabi_ddiv
+ .text          0x080068ac      0x110 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+                0x080068ac                __gtdf2
+                0x080068ac                __gedf2
+                0x080068b4                __ltdf2
+                0x080068b4                __ledf2
+                0x080068bc                __nedf2
+                0x080068bc                __eqdf2
+                0x080068bc                __cmpdf2
+                0x08006938                __aeabi_cdrcmple
+                0x08006948                __aeabi_cdcmpeq
+                0x08006948                __aeabi_cdcmple
+                0x08006958                __aeabi_dcmpeq
+                0x0800696c                __aeabi_dcmplt
+                0x08006980                __aeabi_dcmple
+                0x08006994                __aeabi_dcmpge
+                0x080069a8                __aeabi_dcmpgt
+ .text          0x080069bc       0xa0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_truncdfsf2.o)
+                0x080069bc                __truncdfsf2
+                0x080069bc                __aeabi_d2f
+ .text.__errno  0x08006a5c        0xc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-errno.o)
+                0x08006a5c                __errno
  .text._fclose_r
-                0x08006fcc       0xa4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fclose.o)
-                0x08006fcc                _fclose_r
- .text.fclose   0x08007070       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fclose.o)
-                0x08007070                fclose
+                0x08006a68       0xa4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fclose.o)
+                0x08006a68                _fclose_r
+ .text.fclose   0x08006b0c       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fclose.o)
+                0x08006b0c                fclose
  .text.__sflush_r
-                0x08007080      0x110 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fflush.o)
-                0x08007080                __sflush_r
+                0x08006b1c      0x110 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fflush.o)
+                0x08006b1c                __sflush_r
  .text._fflush_r
-                0x08007190       0x54 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fflush.o)
-                0x08007190                _fflush_r
- .text.fflush   0x080071e4       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fflush.o)
-                0x080071e4                fflush
+                0x08006c2c       0x54 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fflush.o)
+                0x08006c2c                _fflush_r
+ .text.fflush   0x08006c80       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fflush.o)
+                0x08006c80                fflush
  .text._cleanup_r
-                0x08007208        0xc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
-                0x08007208                _cleanup_r
+                0x08006ca4        0xc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
+                0x08006ca4                _cleanup_r
  .text.std.isra.0
-                0x08007214       0x48 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
+                0x08006cb0       0x48 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
  .text.__sfmoreglue
-                0x0800725c       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
-                0x0800725c                __sfmoreglue
- .text.__sinit  0x08007288       0x60 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
-                0x08007288                __sinit
- .text.__sfp    0x080072e8       0x78 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
-                0x080072e8                __sfp
+                0x08006cf8       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
+                0x08006cf8                __sfmoreglue
+ .text.__sinit  0x08006d24       0x60 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
+                0x08006d24                __sinit
+ .text.__sfp    0x08006d84       0x78 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
+                0x08006d84                __sfp
  .text.__sfp_lock_acquire
-                0x08007360        0x2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
-                0x08007360                __sfp_lock_acquire
+                0x08006dfc        0x2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
+                0x08006dfc                __sfp_lock_acquire
  .text.__sfp_lock_release
-                0x08007362        0x2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
-                0x08007362                __sfp_lock_release
+                0x08006dfe        0x2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
+                0x08006dfe                __sfp_lock_release
  .text._fopen_r
-                0x08007364       0x80 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fopen.o)
-                0x08007364                _fopen_r
- .text.fopen    0x080073e4       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fopen.o)
-                0x080073e4                fopen
- .text.fprintf  0x080073f4       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fprintf.o)
-                0x080073f4                fiprintf
-                0x080073f4                fprintf
+                0x08006e00       0x80 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fopen.o)
+                0x08006e00                _fopen_r
+ .text.fopen    0x08006e80       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fopen.o)
+                0x08006e80                fopen
+ .text.fprintf  0x08006e90       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fprintf.o)
+                0x08006e90                fiprintf
+                0x08006e90                fprintf
  .text._fseek_r
-                0x08007418        0x4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fseek.o)
-                0x08007418                _fseek_r
+                0x08006eb4        0x4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fseek.o)
+                0x08006eb4                _fseek_r
  .text._fseeko_r
-                0x0800741c      0x118 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fseeko.o)
-                0x0800741c                _fseeko_r
- .text._fwalk   0x08007534       0x38 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fwalk.o)
-                0x08007534                _fwalk
+                0x08006eb8      0x118 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fseeko.o)
+                0x08006eb8                _fseeko_r
+ .text._fwalk   0x08006fd0       0x38 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fwalk.o)
+                0x08006fd0                _fwalk
  .text._fwalk_reent
-                0x0800756c       0x3c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fwalk.o)
-                0x0800756c                _fwalk_reent
+                0x08007008       0x3c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fwalk.o)
+                0x08007008                _fwalk_reent
  .text.__get_current_locale
-                0x080075a8       0x18 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-locale.o)
+                0x08007044       0x18 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-locale.o)
  .text.__locale_ctype_ptr_l
-                0x080075c0        0x6 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-locale.o)
-                0x080075c0                __locale_ctype_ptr_l
- *fill*         0x080075c6        0x2 
+                0x0800705c        0x6 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-locale.o)
+                0x0800705c                __locale_ctype_ptr_l
+ *fill*         0x08007062        0x2 
  .text.__locale_ctype_ptr
-                0x080075c8       0x14 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-locale.o)
-                0x080075c8                __locale_ctype_ptr
+                0x08007064       0x14 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-locale.o)
+                0x08007064                __locale_ctype_ptr
  .text.__swhatbuf_r
-                0x080075dc       0x46 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-makebuf.o)
-                0x080075dc                __swhatbuf_r
- *fill*         0x08007622        0x2 
+                0x08007078       0x46 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-makebuf.o)
+                0x08007078                __swhatbuf_r
+ *fill*         0x080070be        0x2 
  .text.__smakebuf_r
-                0x08007624       0x78 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-makebuf.o)
-                0x08007624                __smakebuf_r
+                0x080070c0       0x78 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-makebuf.o)
+                0x080070c0                __smakebuf_r
  .text.__ascii_mbtowc
-                0x0800769c       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mbtowc_r.o)
-                0x0800769c                __ascii_mbtowc
- .text.memset   0x080076c0       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memset.o)
-                0x080076c0                memset
- .text._free_r  0x080076d0       0x9c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-freer.o)
-                0x080076d0                _free_r
+                0x08007138       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mbtowc_r.o)
+                0x08007138                __ascii_mbtowc
+ .text.memset   0x0800715c       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memset.o)
+                0x0800715c                memset
+ .text._free_r  0x0800716c       0x9c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-freer.o)
+                0x0800716c                _free_r
  .text._malloc_r
-                0x0800776c       0xbc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-mallocr.o)
-                0x0800776c                _malloc_r
+                0x08007208       0xbc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-mallocr.o)
+                0x08007208                _malloc_r
  .text.__sfputc_r
-                0x08007828       0x30 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf.o)
+                0x080072c4       0x30 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf.o)
  .text.__sfputs_r
-                0x08007858       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf.o)
-                0x08007858                __sfputs_r
+                0x080072f4       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf.o)
+                0x080072f4                __sfputs_r
  .text._vfprintf_r
-                0x0800787c      0x238 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf.o)
-                0x0800787c                _vfprintf_r
-                0x0800787c                _vfiprintf_r
- .text.__cvt    0x08007ab4       0xc8 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_float.o)
-                0x08007ab4                __cvt
+                0x08007318      0x238 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf.o)
+                0x08007318                _vfprintf_r
+                0x08007318                _vfiprintf_r
+ .text.__cvt    0x08007550       0xc8 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_float.o)
+                0x08007550                __cvt
  .text.__exponent
-                0x08007b7c       0x60 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_float.o)
-                0x08007b7c                __exponent
+                0x08007618       0x60 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_float.o)
+                0x08007618                __exponent
  .text._printf_float
-                0x08007bdc      0x47c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_float.o)
-                0x08007bdc                _printf_float
+                0x08007678      0x47c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_float.o)
+                0x08007678                _printf_float
  .text._printf_common
-                0x08008058       0xec c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_i.o)
-                0x08008058                _printf_common
+                0x08007af4       0xec c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x08007af4                _printf_common
  .text._printf_i
-                0x08008144      0x24c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_i.o)
-                0x08008144                _printf_i
+                0x08007be0      0x24c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x08007be0                _printf_i
  .text._scanf_float
-                0x08008390      0x3c0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_float.o)
-                0x08008390                _scanf_float
- .text._open_r  0x08008750       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-openr.o)
-                0x08008750                _open_r
+                0x08007e2c      0x3c0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_float.o)
+                0x08007e2c                _scanf_float
+ .text._open_r  0x080081ec       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-openr.o)
+                0x080081ec                _open_r
  .text.__srget_r
-                0x08008774       0x58 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-rget.o)
-                0x08008774                __srget_r
- .text._sbrk_r  0x080087cc       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sbrkr.o)
-                0x080087cc                _sbrk_r
- .text.scanf    0x080087ec       0x30 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-scanf.o)
-                0x080087ec                scanf
-                0x080087ec                iscanf
- .text.nanf     0x0800881c        0xc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sf_nan.o)
-                0x0800881c                nanf
- .text.sprintf  0x08008828       0x48 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sprintf.o)
-                0x08008828                siprintf
-                0x08008828                sprintf
- .text.__sread  0x08008870       0x22 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-stdio.o)
-                0x08008870                __sread
+                0x08008210       0x58 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-rget.o)
+                0x08008210                __srget_r
+ .text._sbrk_r  0x08008268       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sbrkr.o)
+                0x08008268                _sbrk_r
+ .text.scanf    0x08008288       0x30 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-scanf.o)
+                0x08008288                scanf
+                0x08008288                iscanf
+ .text.nanf     0x080082b8        0xc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sf_nan.o)
+                0x080082b8                nanf
+ .text.sprintf  0x080082c4       0x48 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sprintf.o)
+                0x080082c4                siprintf
+                0x080082c4                sprintf
+ .text.__sread  0x0800830c       0x22 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-stdio.o)
+                0x0800830c                __sread
  .text.__swrite
-                0x08008892       0x38 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-stdio.o)
-                0x08008892                __swrite
- .text.__sseek  0x080088ca       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-stdio.o)
-                0x080088ca                __sseek
+                0x0800832e       0x38 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-stdio.o)
+                0x0800832e                __swrite
+ .text.__sseek  0x08008366       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-stdio.o)
+                0x08008366                __sseek
  .text.__sclose
-                0x080088ee        0x8 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-stdio.o)
-                0x080088ee                __sclose
- .text          0x080088f6       0x14 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strcmp.o)
-                0x080088f6                strcmp
- .text          0x0800890a       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strlen.o)
-                0x0800890a                strlen
+                0x0800838a        0x8 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-stdio.o)
+                0x0800838a                __sclose
+ .text          0x08008392       0x14 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strcmp.o)
+                0x08008392                strcmp
+ .text          0x080083a6       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strlen.o)
+                0x080083a6                strlen
  .text.unlikely.sulp
-                0x0800891a       0x38 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
- *fill*         0x08008952        0x6 
+                0x080083b6       0x38 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
+ *fill*         0x080083ee        0x2 
  .text._strtod_l
-                0x08008958      0xbf0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
-                0x08008958                _strtod_l
+                0x080083f0      0xbf0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
+                0x080083f0                _strtod_l
  .text._strtod_r
-                0x08009548       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
-                0x08009548                _strtod_r
+                0x08008fe0       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
+                0x08008fe0                _strtod_r
  .text._strtol_l.isra.0
-                0x08009568      0x110 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtol.o)
+                0x08009000      0x110 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtol.o)
  .text._strtol_r
-                0x08009678       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtol.o)
-                0x08009678                _strtol_r
+                0x08009110       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtol.o)
+                0x08009110                _strtol_r
  .text.__submore
-                0x0800969c       0x76 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-ungetc.o)
-                0x0800969c                __submore
- *fill*         0x08009712        0x2 
+                0x08009134       0x76 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-ungetc.o)
+                0x08009134                __submore
+ *fill*         0x080091aa        0x2 
  .text._ungetc_r
-                0x08009714       0xe4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-ungetc.o)
-                0x08009714                _ungetc_r
- .text.ungetc   0x080097f8       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-ungetc.o)
-                0x080097f8                ungetc
+                0x080091ac       0xe4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-ungetc.o)
+                0x080091ac                _ungetc_r
+ .text.ungetc   0x08009290       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-ungetc.o)
+                0x08009290                ungetc
  .text._vsnprintf_r
-                0x08009808       0x56 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-vsnprintf.o)
-                0x08009808                _vsniprintf_r
-                0x08009808                _vsnprintf_r
- *fill*         0x0800985e        0x2 
+                0x080092a0       0x56 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-vsnprintf.o)
+                0x080092a0                _vsniprintf_r
+                0x080092a0                _vsnprintf_r
+ *fill*         0x080092f6        0x2 
  .text.vsnprintf
-                0x08009860       0x1c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-vsnprintf.o)
-                0x08009860                vsniprintf
-                0x08009860                vsnprintf
+                0x080092f8       0x1c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-vsnprintf.o)
+                0x080092f8                vsniprintf
+                0x080092f8                vsnprintf
  .text.__swbuf_r
-                0x0800987c       0xa8 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wbuf.o)
-                0x0800987c                __swbuf_r
+                0x08009314       0xa8 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wbuf.o)
+                0x08009314                __swbuf_r
  .text.__ascii_wctomb
-                0x08009924       0x1a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wctomb_r.o)
-                0x08009924                __ascii_wctomb
- *fill*         0x0800993e        0x2 
+                0x080093bc       0x1a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wctomb_r.o)
+                0x080093bc                __ascii_wctomb
+ *fill*         0x080093d6        0x2 
  .text._write_r
-                0x08009940       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-writer.o)
-                0x08009940                _write_r
+                0x080093d8       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-writer.o)
+                0x080093d8                _write_r
  .text.__swsetup_r
-                0x08009964       0xdc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wsetup.o)
-                0x08009964                __swsetup_r
+                0x080093fc       0xdc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wsetup.o)
+                0x080093fc                __swsetup_r
  .text._close_r
-                0x08009a40       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-closer.o)
-                0x08009a40                _close_r
- .text.quorem   0x08009a60      0x11e c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-dtoa.o)
- *fill*         0x08009b7e        0x2 
- .text._dtoa_r  0x08009b80      0xb40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-dtoa.o)
-                0x08009b80                _dtoa_r
+                0x080094d8       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-closer.o)
+                0x080094d8                _close_r
+ .text.quorem   0x080094f8      0x11e c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-dtoa.o)
+ *fill*         0x08009616        0x2 
+ .text._dtoa_r  0x08009618      0xb40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-dtoa.o)
+                0x08009618                _dtoa_r
  .text.__sflags
-                0x0800a6c0       0x6e c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-flags.o)
-                0x0800a6c0                __sflags
- *fill*         0x0800a72e        0x2 
+                0x0800a158       0x6e c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-flags.o)
+                0x0800a158                __sflags
+ *fill*         0x0800a1c6        0x2 
  .text._fstat_r
-                0x0800a730       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fstatr.o)
-                0x0800a730                _fstat_r
- .text.rshift   0x0800a754       0x6c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-gethex.o)
+                0x0800a1c8       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fstatr.o)
+                0x0800a1c8                _fstat_r
+ .text.rshift   0x0800a1ec       0x6c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-gethex.o)
  .text.__hexdig_fun
-                0x0800a7c0       0x2a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-gethex.o)
-                0x0800a7c0                __hexdig_fun
+                0x0800a258       0x2a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-gethex.o)
+                0x0800a258                __hexdig_fun
  .text.__gethex
-                0x0800a7ea      0x440 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-gethex.o)
-                0x0800a7ea                __gethex
- .text.L_shift  0x0800ac2a       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-hexnan.o)
- .text.__match  0x0800ac4e       0x26 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-hexnan.o)
-                0x0800ac4e                __match
+                0x0800a282      0x440 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-gethex.o)
+                0x0800a282                __gethex
+ .text.L_shift  0x0800a6c2       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-hexnan.o)
+ .text.__match  0x0800a6e6       0x26 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-hexnan.o)
+                0x0800a6e6                __match
  .text.__hexnan
-                0x0800ac74      0x11c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-hexnan.o)
-                0x0800ac74                __hexnan
+                0x0800a70c      0x11c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-hexnan.o)
+                0x0800a70c                __hexnan
  .text._isatty_r
-                0x0800ad90       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-isattyr.o)
-                0x0800ad90                _isatty_r
+                0x0800a828       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-isattyr.o)
+                0x0800a828                _isatty_r
  .text.__localeconv_l
-                0x0800adb0        0x4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-localeconv.o)
-                0x0800adb0                __localeconv_l
+                0x0800a848        0x4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-localeconv.o)
+                0x0800a848                __localeconv_l
  .text._localeconv_r
-                0x0800adb4       0x1c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-localeconv.o)
-                0x0800adb4                _localeconv_r
+                0x0800a84c       0x1c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-localeconv.o)
+                0x0800a84c                _localeconv_r
  .text._lseek_r
-                0x0800add0       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-lseekr.o)
-                0x0800add0                _lseek_r
- .text.malloc   0x0800adf4       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-malloc.o)
-                0x0800adf4                malloc
- *fill*         0x0800ae04        0xc 
- .text          0x0800ae10       0xa0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memchr.o)
-                0x0800ae10                memchr
- .text.memcpy   0x0800aeb0       0x16 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memcpy-stub.o)
-                0x0800aeb0                memcpy
- .text.memmove  0x0800aec6       0x36 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memmove.o)
-                0x0800aec6                memmove
+                0x0800a868       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-lseekr.o)
+                0x0800a868                _lseek_r
+ .text.malloc   0x0800a88c       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-malloc.o)
+                0x0800a88c                malloc
+ *fill*         0x0800a89c        0x4 
+ .text          0x0800a8a0       0xa0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memchr.o)
+                0x0800a8a0                memchr
+ .text.memcpy   0x0800a940       0x16 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memcpy-stub.o)
+                0x0800a940                memcpy
+ .text.memmove  0x0800a956       0x36 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memmove.o)
+                0x0800a956                memmove
  .text.__malloc_lock
-                0x0800aefc        0x2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mlock.o)
-                0x0800aefc                __malloc_lock
+                0x0800a98c        0x2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mlock.o)
+                0x0800a98c                __malloc_lock
  .text.__malloc_unlock
-                0x0800aefe        0x2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mlock.o)
-                0x0800aefe                __malloc_unlock
- .text._Balloc  0x0800af00       0x6a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800af00                _Balloc
- .text._Bfree   0x0800af6a       0x2e c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800af6a                _Bfree
+                0x0800a98e        0x2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mlock.o)
+                0x0800a98e                __malloc_unlock
+ .text._Balloc  0x0800a990       0x6a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800a990                _Balloc
+ .text._Bfree   0x0800a9fa       0x2e c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800a9fa                _Bfree
  .text.__multadd
-                0x0800af98       0x76 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800af98                __multadd
- .text.__s2b    0x0800b00e       0x7c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b00e                __s2b
+                0x0800aa28       0x76 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800aa28                __multadd
+ .text.__s2b    0x0800aa9e       0x7c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800aa9e                __s2b
  .text.__hi0bits
-                0x0800b08a       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b08a                __hi0bits
+                0x0800ab1a       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800ab1a                __hi0bits
  .text.__lo0bits
-                0x0800b0ca       0x5a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b0ca                __lo0bits
- .text.__i2b    0x0800b124       0x12 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b124                __i2b
+                0x0800ab5a       0x5a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800ab5a                __lo0bits
+ .text.__i2b    0x0800abb4       0x12 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800abb4                __i2b
  .text.__multiply
-                0x0800b136      0x122 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b136                __multiply
+                0x0800abc6      0x122 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800abc6                __multiply
  .text.__pow5mult
-                0x0800b258       0x9c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b258                __pow5mult
+                0x0800ace8       0x9c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800ace8                __pow5mult
  .text.__lshift
-                0x0800b2f4       0xa2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b2f4                __lshift
- .text.__mcmp   0x0800b396       0x38 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b396                __mcmp
- .text.__mdiff  0x0800b3ce       0xbe c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b3ce                __mdiff
- .text.__ulp    0x0800b48c       0x50 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b48c                __ulp
- .text.__b2d    0x0800b4dc       0x9a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b4dc                __b2d
- .text.__d2b    0x0800b576       0x9c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b576                __d2b
- .text.__ratio  0x0800b612       0x54 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b612                __ratio
+                0x0800ad84       0xa2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800ad84                __lshift
+ .text.__mcmp   0x0800ae26       0x38 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800ae26                __mcmp
+ .text.__mdiff  0x0800ae5e       0xbe c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800ae5e                __mdiff
+ .text.__ulp    0x0800af1c       0x50 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800af1c                __ulp
+ .text.__b2d    0x0800af6c       0x9a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800af6c                __b2d
+ .text.__d2b    0x0800b006       0x9c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800b006                __d2b
+ .text.__ratio  0x0800b0a2       0x54 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800b0a2                __ratio
  .text.__copybits
-                0x0800b666       0x34 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b666                __copybits
+                0x0800b0f6       0x34 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800b0f6                __copybits
  .text.__any_on
-                0x0800b69a       0x44 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800b69a                __any_on
+                0x0800b12a       0x44 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800b12a                __any_on
  .text._calloc_r
-                0x0800b6de       0x1c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-callocr.o)
-                0x0800b6de                _calloc_r
+                0x0800b16e       0x1c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-callocr.o)
+                0x0800b16e                _calloc_r
  .text._realloc_r
-                0x0800b6fa       0x4c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-reallocr.o)
-                0x0800b6fa                _realloc_r
+                0x0800b18a       0x4c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-reallocr.o)
+                0x0800b18a                _realloc_r
  .text.__ssputs_r
-                0x0800b746       0xb2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-svfprintf.o)
-                0x0800b746                __ssputs_r
+                0x0800b1d6       0xb2 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-svfprintf.o)
+                0x0800b1d6                __ssputs_r
  .text._svfprintf_r
-                0x0800b7f8      0x1e8 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-svfprintf.o)
-                0x0800b7f8                _svfiprintf_r
-                0x0800b7f8                _svfprintf_r
+                0x0800b288      0x1e8 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-svfprintf.o)
+                0x0800b288                _svfiprintf_r
+                0x0800b288                _svfprintf_r
  .text.__svfscanf_r
-                0x0800b9e0      0x2b0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf.o)
-                0x0800b9e0                __svfscanf_r
-                0x0800b9e0                __svfiscanf_r
+                0x0800b470      0x2b0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf.o)
+                0x0800b470                __svfscanf_r
+                0x0800b470                __svfiscanf_r
  .text._vfscanf_r
-                0x0800bc90       0x50 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf.o)
-                0x0800bc90                _vfscanf_r
-                0x0800bc90                _vfiscanf_r
+                0x0800b720       0x50 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf.o)
+                0x0800b720                _vfscanf_r
+                0x0800b720                _vfiscanf_r
  .text._scanf_chars
-                0x0800bce0       0xce c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_i.o)
-                0x0800bce0                _scanf_chars
- *fill*         0x0800bdae        0x2 
+                0x0800b770       0xce c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_i.o)
+                0x0800b770                _scanf_chars
+ *fill*         0x0800b83e        0x2 
  .text._scanf_i
-                0x0800bdb0      0x1e4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_i.o)
-                0x0800bdb0                _scanf_i
- .text._read_r  0x0800bf94       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-readr.o)
-                0x0800bf94                _read_r
- .text.lflush   0x0800bfb8       0x12 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-refill.o)
- *fill*         0x0800bfca        0x2 
+                0x0800b840      0x1e4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_i.o)
+                0x0800b840                _scanf_i
+ .text._read_r  0x0800ba24       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-readr.o)
+                0x0800ba24                _read_r
+ .text.lflush   0x0800ba48       0x12 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-refill.o)
+ *fill*         0x0800ba5a        0x2 
  .text.__srefill_r
-                0x0800bfcc      0x110 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-refill.o)
-                0x0800bfcc                __srefill_r
- .text.__sccl   0x0800c0dc       0x62 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sccl.o)
-                0x0800c0dc                __sccl
- .text.strncmp  0x0800c13e       0x2a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strncmp.o)
-                0x0800c13e                strncmp
+                0x0800ba5c      0x110 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-refill.o)
+                0x0800ba5c                __srefill_r
+ .text.__sccl   0x0800bb6c       0x62 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sccl.o)
+                0x0800bb6c                __sccl
+ .text.strncmp  0x0800bbce       0x2a c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strncmp.o)
+                0x0800bbce                strncmp
  .text._strtoul_l.isra.0
-                0x0800c168      0x102 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtoul.o)
- *fill*         0x0800c26a        0x2 
+                0x0800bbf8      0x102 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtoul.o)
+ *fill*         0x0800bcfa        0x2 
  .text._strtoul_r
-                0x0800c26c       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtoul.o)
-                0x0800c26c                _strtoul_r
+                0x0800bcfc       0x24 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtoul.o)
+                0x0800bcfc                _strtoul_r
  .text._malloc_usable_size_r
-                0x0800c290       0x14 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-msizer.o)
-                0x0800c290                _malloc_usable_size_r
- .text          0x0800c2a4       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_unorddf2.o)
-                0x0800c2a4                __unorddf2
-                0x0800c2a4                __aeabi_dcmpun
- .text          0x0800c2d0       0x50 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_fixdfsi.o)
-                0x0800c2d0                __aeabi_d2iz
-                0x0800c2d0                __fixdfsi
- .text          0x0800c320       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_fixunsdfsi.o)
-                0x0800c320                __aeabi_d2uiz
-                0x0800c320                __fixunsdfsi
+                0x0800bd20       0x14 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-msizer.o)
+                0x0800bd20                _malloc_usable_size_r
+ .text          0x0800bd34       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_unorddf2.o)
+                0x0800bd34                __unorddf2
+                0x0800bd34                __aeabi_dcmpun
+ .text          0x0800bd60       0x50 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_fixdfsi.o)
+                0x0800bd60                __aeabi_d2iz
+                0x0800bd60                __fixdfsi
+ .text          0x0800bdb0       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_fixunsdfsi.o)
+                0x0800bdb0                __aeabi_d2uiz
+                0x0800bdb0                __fixunsdfsi
  *(.rodata .rodata.* .constdata .constdata.*)
  .rodata.str1.4
-                0x0800c360       0x31 ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
- *fill*         0x0800c391        0x3 
+                0x0800bdf0       0x31 ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
+ *fill*         0x0800be21        0x3 
  .rodata.flagBitshiftOffset.10365
-                0x0800c394        0x8 ./system/src/stm32f4-hal/stm32f4xx_hal_dma.o
+                0x0800be24        0x8 ./system/src/stm32f4-hal/stm32f4xx_hal_dma.o
  .rodata.str1.4
-                0x0800c39c       0x2e ./system/src/stm32f4-hal/stm32f4xx_hal_dma.o
- *fill*         0x0800c3ca        0x2 
+                0x0800be2c       0x2e ./system/src/stm32f4-hal/stm32f4xx_hal_dma.o
+ *fill*         0x0800be5a        0x2 
  .rodata.str1.4
-                0x0800c3cc       0x2f ./system/src/stm32f4-hal/stm32f4xx_hal_gpio.o
- *fill*         0x0800c3fb        0x1 
+                0x0800be5c       0x2f ./system/src/stm32f4-hal/stm32f4xx_hal_gpio.o
+ *fill*         0x0800be8b        0x1 
  .rodata.str1.4
-                0x0800c3fc       0x31 ./system/src/stm32f4-hal/stm32f4xx_hal_i2s_ex.o
- *fill*         0x0800c42d        0x3 
+                0x0800be8c       0x31 ./system/src/stm32f4-hal/stm32f4xx_hal_i2s_ex.o
+ *fill*         0x0800bebd        0x3 
  .rodata.APBAHBPrescTable
-                0x0800c430       0x10 ./system/src/stm32f4-hal/stm32f4xx_hal_rcc.o
-                0x0800c430                APBAHBPrescTable
+                0x0800bec0       0x10 ./system/src/stm32f4-hal/stm32f4xx_hal_rcc.o
+                0x0800bec0                APBAHBPrescTable
  .rodata.str1.4
-                0x0800c440       0x2e ./system/src/stm32f4-hal/stm32f4xx_hal_rcc.o
- *fill*         0x0800c46e        0x2 
+                0x0800bed0       0x2e ./system/src/stm32f4-hal/stm32f4xx_hal_rcc.o
+ *fill*         0x0800befe        0x2 
  .rodata.str1.4
-                0x0800c470       0x31 ./system/src/stm32f4-hal/stm32f4xx_hal_rcc_ex.o
- *fill*         0x0800c4a1        0x3 
+                0x0800bf00       0x31 ./system/src/stm32f4-hal/stm32f4xx_hal_rcc_ex.o
+ *fill*         0x0800bf31        0x3 
  .rodata.str1.4
-                0x0800c4a4       0x2e ./system/src/stm32f4-hal/stm32f4xx_hal_spi.o
- *fill*         0x0800c4d2        0x2 
+                0x0800bf34       0x2e ./system/src/stm32f4-hal/stm32f4xx_hal_spi.o
+ *fill*         0x0800bf62        0x2 
  .rodata.str1.4
-                0x0800c4d4       0x2e ./system/src/stm32f4-hal/stm32f4xx_hal_tim.o
- *fill*         0x0800c502        0x2 
+                0x0800bf64       0x2e ./system/src/stm32f4-hal/stm32f4xx_hal_tim.o
+ *fill*         0x0800bf92        0x2 
  .rodata.str1.4
-                0x0800c504       0x14 ./system/src/newlib/_exit.o
+                0x0800bf94       0x14 ./system/src/newlib/_exit.o
  .rodata.str1.4
-                0x0800c518        0x9 ./system/src/newlib/_syscalls.o
- *fill*         0x0800c521        0x3 
+                0x0800bfa8        0x9 ./system/src/newlib/_syscalls.o
+ *fill*         0x0800bfb1        0x3 
  .rodata.str1.4
-                0x0800c524       0x6b ./system/src/newlib/assert.o
+                0x0800bfb4       0x6b ./system/src/newlib/assert.o
                                  0x6f (size before relaxing)
- *fill*         0x0800c58f        0x1 
+ *fill*         0x0800c01f        0x1 
  .rodata.str1.4
-                0x0800c590       0x29 ./system/src/diag/Trace.o
+                0x0800c020       0x29 ./system/src/diag/Trace.o
                                  0x2d (size before relaxing)
  .rodata.str1.4
-                0x0800c5b9        0x4 ./system/src/diag/trace_impl.o
- *fill*         0x0800c5b9        0x3 
+                0x0800c049        0x4 ./system/src/diag/trace_impl.o
+ *fill*         0x0800c049        0x3 
  .rodata.str1.4
-                0x0800c5bc      0x146 ./system/src/cortexm/exception_handlers.o
+                0x0800c04c      0x146 ./system/src/cortexm/exception_handlers.o
                                 0x14a (size before relaxing)
- *fill*         0x0800c702        0x2 
+ *fill*         0x0800c192        0x2 
  .rodata.sinTable_f32
-                0x0800c704      0x804 ./system/src/cmsis/DSP_Lib/CommonTables/arm_common_tables.o
-                0x0800c704                sinTable_f32
+                0x0800c194      0x804 ./system/src/cmsis/DSP_Lib/CommonTables/arm_common_tables.o
+                0x0800c194                sinTable_f32
  .rodata.FLLFRatioGain
-                0x0800cf08       0x3c ./system/src/Components/wm5102/wm5102.o
-                0x0800cf08                FLLFRatioGain
+                0x0800c998       0x3c ./system/src/Components/wm5102/wm5102.o
+                0x0800c998                FLLFRatioGain
  .rodata.SampleRateConfig
-                0x0800cf44       0x50 ./system/src/Components/wm5102/wm5102.o
-                0x0800cf44                SampleRateConfig
+                0x0800c9d4       0x50 ./system/src/Components/wm5102/wm5102.o
+                0x0800c9d4                SampleRateConfig
  .rodata.str1.4
-                0x0800cf94       0x3a ./src/main.o
- *fill*         0x0800cfce        0x2 
+                0x0800ca24       0x3a ./src/main.o
+ *fill*         0x0800ca5e        0x2 
  .rodata.TestDesc
-                0x0800cfd0       0x88 ./src/tests.o
+                0x0800ca60       0x88 ./src/tests.o
  .rodata.str1.4
-                0x0800d058      0x201 ./src/tests.o
- *fill*         0x0800d259        0x3 
+                0x0800cae8      0x201 ./src/tests.o
+ *fill*         0x0800cce9        0x3 
  .rodata.str1.4
-                0x0800d25c        0x8 ./src/utils.o
+                0x0800ccec        0x8 ./src/utils.o
                                   0x7 (size before relaxing)
  .rodata.I2SFreq
-                0x0800d264       0x20 ./src/wolfson_pi_audio.o
-                0x0800d264                I2SFreq
+                0x0800ccf4       0x20 ./src/wolfson_pi_audio.o
+                0x0800ccf4                I2SFreq
  .rodata.I2SPLLN
-                0x0800d284       0x20 ./src/wolfson_pi_audio.o
-                0x0800d284                I2SPLLN
+                0x0800cd14       0x20 ./src/wolfson_pi_audio.o
+                0x0800cd14                I2SPLLN
  .rodata.I2SPLLR
-                0x0800d2a4       0x20 ./src/wolfson_pi_audio.o
-                0x0800d2a4                I2SPLLR
+                0x0800cd34       0x20 ./src/wolfson_pi_audio.o
+                0x0800cd34                I2SPLLR
  .rodata.__sf_fake_stdin
-                0x0800d2c4       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
-                0x0800d2c4                __sf_fake_stdin
+                0x0800cd54       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
+                0x0800cd54                __sf_fake_stdin
  .rodata.__sf_fake_stdout
-                0x0800d2e4       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
-                0x0800d2e4                __sf_fake_stdout
+                0x0800cd74       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
+                0x0800cd74                __sf_fake_stdout
  .rodata.__sf_fake_stderr
-                0x0800d304       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
-                0x0800d304                __sf_fake_stderr
+                0x0800cd94       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
+                0x0800cd94                __sf_fake_stderr
  .rodata._global_impure_ptr
-                0x0800d324        0x4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-impure.o)
-                0x0800d324                _global_impure_ptr
+                0x0800cdb4        0x4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-impure.o)
+                0x0800cdb4                _global_impure_ptr
  .rodata.str1.1
-                0x0800d328        0xa c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-locale.o)
+                0x0800cdb8        0xa c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-locale.o)
                                   0xb (size before relaxing)
  .rodata.str1.1
-                0x0800d332       0x11 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf.o)
+                0x0800cdc2       0x11 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf.o)
  .rodata.str1.1
-                0x0800d343       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_float.o)
+                0x0800cdd3       0x10 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_float.o)
                                  0x12 (size before relaxing)
  .rodata.str1.1
-                0x0800d353       0x22 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0800cde3       0x22 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_i.o)
  .rodata.str1.1
-                0x0800d375        0x5 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_float.o)
- *fill*         0x0800d37a        0x2 
+                0x0800ce05        0x5 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_float.o)
+ *fill*         0x0800ce0a        0x2 
  .rodata.fpi.6181
-                0x0800d37c       0x14 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
+                0x0800ce0c       0x14 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
  .rodata.str1.1
-                0x0800d390        0x5 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
+                0x0800ce20        0x5 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
                                   0xc (size before relaxing)
  .rodata.tinytens
-                0x0800d390       0x28 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
+                0x0800ce20       0x28 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
  .rodata.fpinan.6217
-                0x0800d3b8       0x14 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
+                0x0800ce48       0x14 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
  .rodata._ctype_
-                0x0800d3cc      0x101 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-ctype_.o)
-                0x0800d3cc                _ctype_
+                0x0800ce5c      0x101 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-ctype_.o)
+                0x0800ce5c                _ctype_
  .rodata.str1.1
-                0x0800d4cd        0xd c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-dtoa.o)
+                0x0800cf5d        0xd c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-dtoa.o)
                                   0xf (size before relaxing)
- *fill*         0x0800d4da        0x6 
+ *fill*         0x0800cf6a        0x6 
  .rodata.__mprec_tens
-                0x0800d4e0       0xc8 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800d4e0                __mprec_tens
+                0x0800cf70       0xc8 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800cf70                __mprec_tens
  .rodata.__mprec_bigtens
-                0x0800d5a8       0x28 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
-                0x0800d5a8                __mprec_bigtens
+                0x0800d038       0x28 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800d038                __mprec_bigtens
  .rodata.p05.6099
-                0x0800d5d0        0xc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+                0x0800d060        0xc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
  .rodata.str1.1
-                0x0800d5dc       0x11 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-svfprintf.o)
+                0x0800d06c       0x11 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-svfprintf.o)
  .rodata.str1.1
-                0x0800d5dc        0x4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf.o)
- .rodata        0x0800d5dc        0xc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_i.o)
+                0x0800d06c        0x4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf.o)
+ .rodata        0x0800d06c        0xc c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_i.o)
  .rodata.str1.1
-                0x0800d5e8       0x1b c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_i.o)
+                0x0800d078       0x1b c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_i.o)
  *(vtable)
  *(.eh_frame*)
  *(.glue_7)
- .glue_7        0x0800d603        0x0 linker stubs
+ .glue_7        0x0800d093        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0800d603        0x0 linker stubs
+ .glue_7t       0x0800d093        0x0 linker stubs
 
-.vfp11_veneer   0x0800d604        0x0
- .vfp11_veneer  0x0800d604        0x0 linker stubs
+.vfp11_veneer   0x0800d094        0x0
+ .vfp11_veneer  0x0800d094        0x0 linker stubs
 
-.v4_bx          0x0800d604        0x0
- .v4_bx         0x0800d604        0x0 linker stubs
+.v4_bx          0x0800d094        0x0
+ .v4_bx         0x0800d094        0x0 linker stubs
 
-.iplt           0x0800d604        0x0
- .iplt          0x0800d604        0x0 ./system/src/stm32f4_discovery/stm32f4_discovery.o
+.iplt           0x0800d094        0x0
+ .iplt          0x0800d094        0x0 ./system/src/stm32f4_discovery/stm32f4_discovery.o
 
-.rel.dyn        0x0800d604        0x0
- .rel.iplt      0x0800d604        0x0 ./system/src/stm32f4_discovery/stm32f4_discovery.o
+.rel.dyn        0x0800d094        0x0
+ .rel.iplt      0x0800d094        0x0 ./system/src/stm32f4_discovery/stm32f4_discovery.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0800d604                . = ALIGN (0x4)
-                0x0800d604                __exidx_start = .
+                0x0800d094                . = ALIGN (0x4)
+                0x0800d094                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0800d604                __exidx_end = .
-                0x0800d604                . = ALIGN (0x4)
-                0x0800d604                _etext = .
-                0x0800d604                __etext = .
+                0x0800d094                __exidx_end = .
+                0x0800d094                . = ALIGN (0x4)
+                0x0800d094                _etext = .
+                0x0800d094                __etext = .
 
-.data_CCMRAM    0x10000000        0x0 load address 0x0800d604
+.data_CCMRAM    0x10000000        0x0 load address 0x0800d094
  FILL mask 0xff
  *(.data.CCMRAM .data.CCMRAM.*)
                 0x10000000                . = ALIGN (0x4)
-                0x0800d604                _sidata = LOADADDR (.data)
+                0x0800d094                _sidata = LOADADDR (.data)
 
-.data           0x20000000      0x2e4 load address 0x0800d604
+.data           0x20000000      0x2e4 load address 0x0800d094
  FILL mask 0xff
                 0x20000000                _sdata = .
                 0x20000000                __data_start__ = .
@@ -25374,7 +25372,7 @@ END GROUP
                 0x200002e4                _edata = .
                 0x200002e4                __data_end__ = .
 
-.igot.plt       0x200002e4        0x0 load address 0x0800d8e8
+.igot.plt       0x200002e4        0x0 load address 0x0800d378
  .igot.plt      0x200002e4        0x0 ./system/src/stm32f4_discovery/stm32f4_discovery.o
 
 .bss_CCMRAM     0x10000000        0x0
@@ -25936,7 +25934,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x1de97
+.debug_info     0x00000000    0x1de8e
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x196d ./system/src/stm32f4_discovery/stm32f4_discovery.o
  .debug_info    0x0000196d      0x466 ./system/src/stm32f4_discovery/stm32f4_discovery_accelerometer.o
@@ -25973,11 +25971,11 @@ END GROUP
  .debug_info    0x00017a10      0x829 ./system/src/Components/lis302dl/lis302dl.o
  .debug_info    0x00018239      0x679 ./src/_initialize_hardware.o
  .debug_info    0x000188b2      0x28e ./src/dwt.o
- .debug_info    0x00018b40     0x18ff ./src/main.o
- .debug_info    0x0001a43f      0x691 ./src/stm32f4xx_it.o
- .debug_info    0x0001aad0      0x8b8 ./src/tests.o
- .debug_info    0x0001b388      0xa8a ./src/utils.o
- .debug_info    0x0001be12     0x2085 ./src/wolfson_pi_audio.o
+ .debug_info    0x00018b40     0x18f6 ./src/main.o
+ .debug_info    0x0001a436      0x691 ./src/stm32f4xx_it.o
+ .debug_info    0x0001aac7      0x8b8 ./src/tests.o
+ .debug_info    0x0001b37f      0xa8a ./src/utils.o
+ .debug_info    0x0001be09     0x2085 ./src/wolfson_pi_audio.o
 
 .debug_abbrev   0x00000000     0x460c
  *(.debug_abbrev)
@@ -26022,7 +26020,7 @@ END GROUP
  .debug_abbrev  0x000040a3      0x26c ./src/utils.o
  .debug_abbrev  0x0000430f      0x2fd ./src/wolfson_pi_audio.o
 
-.debug_line     0x00000000    0x1992f
+.debug_line     0x00000000    0x19932
  *(.debug_line)
  .debug_line    0x00000000      0xbb4 ./system/src/stm32f4_discovery/stm32f4_discovery.o
  .debug_line    0x00000bb4      0xb4d ./system/src/stm32f4_discovery/stm32f4_discovery_accelerometer.o
@@ -26059,13 +26057,13 @@ END GROUP
  .debug_line    0x00014c7a      0x3b8 ./system/src/Components/lis302dl/lis302dl.o
  .debug_line    0x00015032      0x97c ./src/_initialize_hardware.o
  .debug_line    0x000159ae      0x95e ./src/dwt.o
- .debug_line    0x0001630c      0xe29 ./src/main.o
- .debug_line    0x00017135      0xae4 ./src/stm32f4xx_it.o
- .debug_line    0x00017c19      0xb90 ./src/tests.o
- .debug_line    0x000187a9      0x495 ./src/utils.o
- .debug_line    0x00018c3e      0xcf1 ./src/wolfson_pi_audio.o
+ .debug_line    0x0001630c      0xe2c ./src/main.o
+ .debug_line    0x00017138      0xae4 ./src/stm32f4xx_it.o
+ .debug_line    0x00017c1c      0xb90 ./src/tests.o
+ .debug_line    0x000187ac      0x495 ./src/utils.o
+ .debug_line    0x00018c41      0xcf1 ./src/wolfson_pi_audio.o
 
-.debug_frame    0x00000000     0x4b38
+.debug_frame    0x00000000     0x4b40
  *(.debug_frame)
  .debug_frame   0x00000000      0x29c ./system/src/stm32f4_discovery/stm32f4_discovery.o
  .debug_frame   0x0000029c       0xa4 ./system/src/stm32f4_discovery/stm32f4_discovery_accelerometer.o
@@ -26101,73 +26099,73 @@ END GROUP
  .debug_frame   0x00002e24      0x17c ./system/src/Components/lis302dl/lis302dl.o
  .debug_frame   0x00002fa0       0x48 ./src/_initialize_hardware.o
  .debug_frame   0x00002fe8       0x20 ./src/dwt.o
- .debug_frame   0x00003008      0x154 ./src/main.o
- .debug_frame   0x0000315c       0xf0 ./src/stm32f4xx_it.o
- .debug_frame   0x0000324c       0x84 ./src/tests.o
- .debug_frame   0x000032d0       0x5c ./src/utils.o
- .debug_frame   0x0000332c      0x364 ./src/wolfson_pi_audio.o
- .debug_frame   0x00003690       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-errno.o)
- .debug_frame   0x000036b0       0x3c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fclose.o)
- .debug_frame   0x000036ec       0x68 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fflush.o)
- .debug_frame   0x00003754      0x11c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
- .debug_frame   0x00003870       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fopen.o)
- .debug_frame   0x000038b0       0x64 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fprintf.o)
- .debug_frame   0x00003914       0x30 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fseek.o)
- .debug_frame   0x00003944       0x44 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fseeko.o)
- .debug_frame   0x00003988       0x54 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fwalk.o)
- .debug_frame   0x000039dc       0x88 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-locale.o)
- .debug_frame   0x00003a64       0x54 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-makebuf.o)
- .debug_frame   0x00003ab8       0x44 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mbtowc_r.o)
- .debug_frame   0x00003afc       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memset.o)
- .debug_frame   0x00003b1c       0x38 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-freer.o)
- .debug_frame   0x00003b54       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-mallocr.o)
- .debug_frame   0x00003b80       0xac c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf.o)
- .debug_frame   0x00003c2c       0x88 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_float.o)
- .debug_frame   0x00003cb4       0x60 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_i.o)
- .debug_frame   0x00003d14       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_float.o)
- .debug_frame   0x00003d54       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-openr.o)
- .debug_frame   0x00003d80       0x3c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-rget.o)
- .debug_frame   0x00003dbc       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sbrkr.o)
- .debug_frame   0x00003de8       0x74 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-scanf.o)
- .debug_frame   0x00003e5c       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sf_nan.o)
- .debug_frame   0x00003e7c       0x70 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sprintf.o)
- .debug_frame   0x00003eec       0x88 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-stdio.o)
- .debug_frame   0x00003f74       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strcmp.o)
- .debug_frame   0x00003f94       0xf4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
- .debug_frame   0x00004088       0x84 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtol.o)
- .debug_frame   0x0000410c       0x60 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-ungetc.o)
- .debug_frame   0x0000416c       0x48 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-vsnprintf.o)
- .debug_frame   0x000041b4       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wbuf.o)
- .debug_frame   0x000041f4       0x3c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wctomb_r.o)
- .debug_frame   0x00004230       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-writer.o)
- .debug_frame   0x0000425c       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wsetup.o)
- .debug_frame   0x00004288       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-closer.o)
- .debug_frame   0x000042b4       0x6c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-dtoa.o)
- .debug_frame   0x00004320       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-flags.o)
- .debug_frame   0x0000434c       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fstatr.o)
- .debug_frame   0x00004378       0x70 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-gethex.o)
- .debug_frame   0x000043e8       0x74 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-hexnan.o)
- .debug_frame   0x0000445c       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-isattyr.o)
- .debug_frame   0x00004488       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-localeconv.o)
- .debug_frame   0x000044c8       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-lseekr.o)
- .debug_frame   0x000044f4       0x30 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-malloc.o)
- .debug_frame   0x00004524       0x28 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x0000454c       0x28 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memmove.o)
- .debug_frame   0x00004574       0x30 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mlock.o)
- .debug_frame   0x000045a4      0x238 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
- .debug_frame   0x000047dc       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-callocr.o)
- .debug_frame   0x00004808       0x3c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-reallocr.o)
- .debug_frame   0x00004844       0x90 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-svfprintf.o)
- .debug_frame   0x000048d4       0xa0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf.o)
- .debug_frame   0x00004974       0x5c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_i.o)
- .debug_frame   0x000049d0       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-readr.o)
- .debug_frame   0x000049fc       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-refill.o)
- .debug_frame   0x00004a3c       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sccl.o)
- .debug_frame   0x00004a68       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strncmp.o)
- .debug_frame   0x00004a94       0x84 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtoul.o)
- .debug_frame   0x00004b18       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-msizer.o)
+ .debug_frame   0x00003008      0x15c ./src/main.o
+ .debug_frame   0x00003164       0xf0 ./src/stm32f4xx_it.o
+ .debug_frame   0x00003254       0x84 ./src/tests.o
+ .debug_frame   0x000032d8       0x5c ./src/utils.o
+ .debug_frame   0x00003334      0x364 ./src/wolfson_pi_audio.o
+ .debug_frame   0x00003698       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x000036b8       0x3c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fclose.o)
+ .debug_frame   0x000036f4       0x68 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fflush.o)
+ .debug_frame   0x0000375c      0x11c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-findfp.o)
+ .debug_frame   0x00003878       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fopen.o)
+ .debug_frame   0x000038b8       0x64 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fprintf.o)
+ .debug_frame   0x0000391c       0x30 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fseek.o)
+ .debug_frame   0x0000394c       0x44 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fseeko.o)
+ .debug_frame   0x00003990       0x54 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fwalk.o)
+ .debug_frame   0x000039e4       0x88 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-locale.o)
+ .debug_frame   0x00003a6c       0x54 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-makebuf.o)
+ .debug_frame   0x00003ac0       0x44 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mbtowc_r.o)
+ .debug_frame   0x00003b04       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memset.o)
+ .debug_frame   0x00003b24       0x38 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x00003b5c       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x00003b88       0xac c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf.o)
+ .debug_frame   0x00003c34       0x88 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_float.o)
+ .debug_frame   0x00003cbc       0x60 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfprintf_i.o)
+ .debug_frame   0x00003d1c       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_float.o)
+ .debug_frame   0x00003d5c       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-openr.o)
+ .debug_frame   0x00003d88       0x3c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-rget.o)
+ .debug_frame   0x00003dc4       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x00003df0       0x74 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-scanf.o)
+ .debug_frame   0x00003e64       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sf_nan.o)
+ .debug_frame   0x00003e84       0x70 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sprintf.o)
+ .debug_frame   0x00003ef4       0x88 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-stdio.o)
+ .debug_frame   0x00003f7c       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strcmp.o)
+ .debug_frame   0x00003f9c       0xf4 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtod.o)
+ .debug_frame   0x00004090       0x84 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtol.o)
+ .debug_frame   0x00004114       0x60 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-ungetc.o)
+ .debug_frame   0x00004174       0x48 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-vsnprintf.o)
+ .debug_frame   0x000041bc       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wbuf.o)
+ .debug_frame   0x000041fc       0x3c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wctomb_r.o)
+ .debug_frame   0x00004238       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-writer.o)
+ .debug_frame   0x00004264       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-wsetup.o)
+ .debug_frame   0x00004290       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-closer.o)
+ .debug_frame   0x000042bc       0x6c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-dtoa.o)
+ .debug_frame   0x00004328       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-flags.o)
+ .debug_frame   0x00004354       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-fstatr.o)
+ .debug_frame   0x00004380       0x70 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-gethex.o)
+ .debug_frame   0x000043f0       0x74 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-gdtoa-hexnan.o)
+ .debug_frame   0x00004464       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-isattyr.o)
+ .debug_frame   0x00004490       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-localeconv.o)
+ .debug_frame   0x000044d0       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-lseekr.o)
+ .debug_frame   0x000044fc       0x30 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-malloc.o)
+ .debug_frame   0x0000452c       0x28 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x00004554       0x28 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-memmove.o)
+ .debug_frame   0x0000457c       0x30 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mlock.o)
+ .debug_frame   0x000045ac      0x238 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-mprec.o)
+ .debug_frame   0x000047e4       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-callocr.o)
+ .debug_frame   0x00004810       0x3c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-reallocr.o)
+ .debug_frame   0x0000484c       0x90 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-svfprintf.o)
+ .debug_frame   0x000048dc       0xa0 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf.o)
+ .debug_frame   0x0000497c       0x5c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-vfscanf_i.o)
+ .debug_frame   0x000049d8       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-readr.o)
+ .debug_frame   0x00004a04       0x40 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-refill.o)
+ .debug_frame   0x00004a44       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-sccl.o)
+ .debug_frame   0x00004a70       0x2c c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strncmp.o)
+ .debug_frame   0x00004a9c       0x84 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-strtoul.o)
+ .debug_frame   0x00004b20       0x20 c:/users/lucas/desktop/eclipse_daeln_32/eclipse/tools/gccarmembedded/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg_nano.a(lib_a-nano-msizer.o)
 
-.debug_str      0x00000000    0xb8c8e
+.debug_str      0x00000000    0xb8cba
  *(.debug_str)
  .debug_str     0x00000000    0xa3f5b ./system/src/stm32f4_discovery/stm32f4_discovery.o
                               0xa4331 (size before relaxing)
@@ -26239,18 +26237,18 @@ END GROUP
                               0xa273a (size before relaxing)
  .debug_str     0x000b6d49      0x15a ./src/dwt.o
                               0xa25b7 (size before relaxing)
- .debug_str     0x000b6ea3     0x1803 ./src/main.o
-                              0xb0a05 (size before relaxing)
- .debug_str     0x000b86a6       0x5f ./src/stm32f4xx_it.o
+ .debug_str     0x000b6ea3     0x182f ./src/main.o
+                              0xb0a31 (size before relaxing)
+ .debug_str     0x000b86d2       0x5f ./src/stm32f4xx_it.o
                               0xac3b2 (size before relaxing)
- .debug_str     0x000b8705      0x346 ./src/tests.o
+ .debug_str     0x000b8731      0x346 ./src/tests.o
                               0xaeac1 (size before relaxing)
- .debug_str     0x000b8a4b       0x7f ./src/utils.o
+ .debug_str     0x000b8a77       0x7f ./src/utils.o
                                0xa240 (size before relaxing)
- .debug_str     0x000b8aca      0x1c4 ./src/wolfson_pi_audio.o
+ .debug_str     0x000b8af6      0x1c4 ./src/wolfson_pi_audio.o
                               0xac886 (size before relaxing)
 
-.debug_loc      0x00000000     0xb63b
+.debug_loc      0x00000000     0xb66b
  *(.debug_loc)
  .debug_loc     0x00000000      0x422 ./system/src/stm32f4_discovery/stm32f4_discovery.o
  .debug_loc     0x00000422      0x13a ./system/src/stm32f4_discovery/stm32f4_discovery_accelerometer.o
@@ -26281,10 +26279,10 @@ END GROUP
  .debug_loc     0x00009d8e      0xd71 ./system/src/Components/wm5102/wm5102.o
  .debug_loc     0x0000aaff      0x1b5 ./system/src/Components/lis3dsh/lis3dsh.o
  .debug_loc     0x0000acb4      0x14c ./system/src/Components/lis302dl/lis302dl.o
- .debug_loc     0x0000ae00      0x10d ./src/main.o
- .debug_loc     0x0000af0d       0xac ./src/tests.o
- .debug_loc     0x0000afb9       0x57 ./src/utils.o
- .debug_loc     0x0000b010      0x62b ./src/wolfson_pi_audio.o
+ .debug_loc     0x0000ae00      0x13d ./src/main.o
+ .debug_loc     0x0000af3d       0xac ./src/tests.o
+ .debug_loc     0x0000afe9       0x57 ./src/utils.o
+ .debug_loc     0x0000b040      0x62b ./src/wolfson_pi_audio.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -26343,7 +26341,7 @@ OUTPUT(stm32f4_discovery-sintetizador.elf elf32-littlearm)
  .debug_ranges  0x00001098       0x18 ./src/utils.o
  .debug_ranges  0x000010b0      0x108 ./src/wolfson_pi_audio.o
 
-.debug_macro    0x00000000    0x2292f
+.debug_macro    0x00000000    0x2293d
  .debug_macro   0x00000000      0x4b7 ./system/src/stm32f4_discovery/stm32f4_discovery.o
  .debug_macro   0x000004b7      0x8b6 ./system/src/stm32f4_discovery/stm32f4_discovery.o
  .debug_macro   0x00000d6d      0x245 ./system/src/stm32f4_discovery/stm32f4_discovery.o
@@ -26506,13 +26504,13 @@ OUTPUT(stm32f4_discovery-sintetizador.elf elf32-littlearm)
  .debug_macro   0x00020198      0x48e ./src/_initialize_hardware.o
  .debug_macro   0x00020626      0x499 ./src/dwt.o
  .debug_macro   0x00020abf       0x1c ./src/dwt.o
- .debug_macro   0x00020adb      0x78f ./src/main.o
- .debug_macro   0x0002126a      0x1e8 ./src/main.o
- .debug_macro   0x00021452       0x16 ./src/main.o
- .debug_macro   0x00021468      0x1ca ./src/main.o
- .debug_macro   0x00021632       0x22 ./src/main.o
- .debug_macro   0x00021654      0x4cd ./src/stm32f4xx_it.o
- .debug_macro   0x00021b21      0x5b4 ./src/tests.o
- .debug_macro   0x000220d5      0x295 ./src/utils.o
- .debug_macro   0x0002236a      0x10b ./src/utils.o
- .debug_macro   0x00022475      0x4ba ./src/wolfson_pi_audio.o
+ .debug_macro   0x00020adb      0x79d ./src/main.o
+ .debug_macro   0x00021278      0x1e8 ./src/main.o
+ .debug_macro   0x00021460       0x16 ./src/main.o
+ .debug_macro   0x00021476      0x1ca ./src/main.o
+ .debug_macro   0x00021640       0x22 ./src/main.o
+ .debug_macro   0x00021662      0x4cd ./src/stm32f4xx_it.o
+ .debug_macro   0x00021b2f      0x5b4 ./src/tests.o
+ .debug_macro   0x000220e3      0x295 ./src/utils.o
+ .debug_macro   0x00022378      0x10b ./src/utils.o
+ .debug_macro   0x00022483      0x4ba ./src/wolfson_pi_audio.o
