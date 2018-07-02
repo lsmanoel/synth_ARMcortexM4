@@ -371,6 +371,22 @@ int main(int argc, char* argv[])
 //    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
 //    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
 
+	#define BLOCK_SIZE (WOLFSON_PI_AUDIO_TXRX_BUFFER_SIZE)/2
+	for(i=0, k_L=0, k_R=0; i<(WOLFSON_PI_AUDIO_TXRX_BUFFER_SIZE/2); i++)
+	{
+		if(i%2)
+		{
+			inputF32Buffer_L[k_L] = (float32_t)(RxBuffer[i]/(2*32768.0));//convert to float LEFT
+			k_L++;
+		}
+		else
+		{
+			//TxBuffer[i] = RxBuffer[i];//   RIGHT (canal de baixo no OcenAudio)
+			inputF32Buffer_R[k_R] = (float32_t)(RxBuffer[i]/(2*32768.0));//convert to float RIGHT
+			k_R++;
+		}
+	}
+
 	while (1) {
 
 		readInterface();
