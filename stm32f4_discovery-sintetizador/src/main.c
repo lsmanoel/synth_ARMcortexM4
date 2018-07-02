@@ -200,13 +200,14 @@ void processBlock()
 
 		sin_freq = sin_freq * sin_freq;//sin_freq^2
 		sin_freq = sin_freq * sin_freq;//sin_freq^3
+		sin_freq = sin_freq * sin_freq;//sin_freq^4
 
         if (GPIO_PIN_SET == HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)) {
-        	sin_freq = sin_freq*(8.0/3.0);//
+        	//sin_freq = sin_freq*(8.0/3.0);//
         	sin_1_n  = sampleRate/(4.0*sin_freq);
         }
 
-		sin_1_sig[i] = arm_sin_f32((6.283185307/2.0)*(sin_freq*sin_1_n*samplePeriod));
+		sin_1_sig[i] = arm_sin_f32((6.283185307/1.0)*(sin_freq*sin_1_n*samplePeriod));
 
 		if(sin_1_n < 0.2*sampleRate/sin_freq)
 		{
@@ -537,15 +538,14 @@ void setInput(int mode)
 
 //#define MONO_OUTPUT_DEBUG_FILE 1
 //#define MONO_OUTPUT 2
-//#define STEREO_OUTPUT 0
-
 void setOutput(int mode)
 {
 	if(mode){
 		switch(mode)
 		{
 			case MONO_OUTPUT_DEBUG_FILE:
-				//MONO OUT DEBUG FILE - MIXER STEREO
+				//--------------------------------------------------------------------------
+				//MONO OUT DEBUG FILE
 				outputF32Buffer_MONO_File = fopen("outputF32Buffer_MONO_File.txt", "a");
 				for(i=0; i<BLOCK_SIZE; i++)
 				{
@@ -554,12 +554,12 @@ void setOutput(int mode)
 				fclose(outputF32Buffer_MONO_File);
 
 				trace_printf("%.2f ... %.2f\n", sin_1_n, sin_1_n/(float32_t)BLOCK_SIZE);
-//BREAK POINT ---------------------------------------------------------------------------------------------------------------------
+//BREAK POINT ------------------------------------------------------------------------------
 				break;
 
 			case MONO_OUTPUT:
-				//-----------------------------------------------------------------------------------------------------------------
-				////MONO OUT
+				//--------------------------------------------------------------------------
+				//MONO OUT DEBUG FILE
 				for(i=0; i<BLOCK_SIZE; i++)
 				{
 					outputF32Buffer_L[i] = outputF32Buffer_MONO[i];//LEFT
